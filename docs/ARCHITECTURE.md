@@ -315,13 +315,23 @@ CREATE INDEX idx_audit_user_resource ON audit_log(user_id, resource_type, resour
 
 ---
 
-## 10. القرارات المعمارية المفتوحة (ADRs Pending)
+## 10. القرارات المعمارية المفتوحة (ADRs)
 
-- [ ] ADR-001: استخدام PostgreSQL vs MongoDB للـ metadata
-- [ ] ADR-002: Orthanc vs dcm4che للـ PACS
-- [ ] ADR-003: Milvus vs Weaviate vs Qdrant للـ Vector DB
-- [ ] ADR-004: Celery vs Temporal للـ workflow engine
-- [ ] ADR-005: نموذج عربي Fine-tuned vs Translation pipeline
+القرارات المُعتمدة موثّقة في [ADR.md](ADR.md). القرارات المعلّقة قيد المناقشة:
+
+### ✅ مقررة (انظر [ADR.md](ADR.md))
+- ADR-001: قاعدة البيانات → **asyncpg** (Async PostgreSQL via SQLAlchemy 2.0)
+- ADR-002: Job Queue → **Celery + Redis + Flower** (مع retry logic + monitoring)
+- ADR-003: Migrations → **Alembic + SQLAlchemy 2.0** (لا SQLModel)
+- ADR-004: Auth → **JWT short-lived (15min) + Refresh tokens (7d, httpOnly cookie)**
+
+### ⏳ معلّقة
+- [ ] ADR-005: Orthanc vs dcm4che للـ PACS
+- [ ] ADR-006: Milvus vs Weaviate vs Qdrant للـ Vector DB
+- [ ] ADR-007: Flower vs NVFlare للـ Federated Learning
+- [ ] ADR-008: نموذج عربي Fine-tuned vs Translation pipeline
+- [ ] ADR-009: On-Premise vs Cloud vs Hybrid للنشر
+- [ ] ADR-010: FHIR R4 vs FHIR R5 للـ export
 
 ---
 

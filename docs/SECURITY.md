@@ -128,13 +128,71 @@ python scripts/dicom_deidentify.py \
 | **Researcher** | بيانات مُجمّعة (aggregated)، لا بيانات فردية |
 | **Viewer** | عرض التقارير النهائية فقط (لا صور) |
 
-### 3.2 المصادقة
+### 3.2 المصادقة (per ADR-004)
 
-- **OAuth2 + JWT** للـ API
-- **MFA إجباري** للـ Admin و Radiologist
-- **Refresh tokens** بـ lifetime 24h
-- **Access tokens** بـ lifetime 15min
-- **Session timeout**: 30 min على الويب
+نموذج **JWT hybrid**: Access Token قصير + Refresh Token طويل.
+
+| العنصر | القيمة | التخزين |
+|--------|--------|---------|
+| **Access Token** | 15 دقيقة | `Authorization: Bearer <token>` header |
+| **Refresh Token** | 7 أيام | `httpOnly` cookie + Redis (للـ revocation) |
+| **Algorithm** | HS256 (dev) → RS256 (prod) | — |
+| **MFA (TOTP)** | إجباري للـ Admin + Radiologist | Google Authenticator |
+| **Session timeout** | 30 min على الويب (idle) | — |
+
+#### Login Flow
+```
+POST /auth/login (email + password + MFA)
+   ↓
+API verifies password + MFA
+   ↓
+Issues:
+  • access_token (15 min) → returned in JSON body
+  • refresh_token (7 days) → Set-Cookie: httpOnly, Secure, SameSite=Strict, Path=/auth/refresh
+   ↓
+Stores refresh_token:{jti} → {user_id, issued_at} in Redis (TTL=7d)
+```
+
+#### Refresh Flow
+```
+Access token expired (401)
+   ↓
+Client calls POST /auth/refresh (refresh cookie sent automatically)
+   ↓
+API verifies: signature + expiry + not in revocation list
+   ↓
+Issues NEW access_token + NEW refresh_token (rotation)
+   ↓
+Old refresh_token added to revocation list (prevents replay)
+```
+
+#### Logout Flow
+```
+POST /auth/logout
+   ↓
+Adds refresh_token:{jti} to Redis revocation list (TTL = remaining validity)
+   ↓
+Clears refresh cookie
+   ↓
+Client discards access_token (will expire in ≤15 min)
+```
+
+#### Token Payload
+```json
+{
+  "sub": "user-uuid",
+  "email": "dr.saleh@hospital.com",
+  "role": "radiologist",
+  "permissions": ["studies:read", "reports:write", "reports:approve"],
+  "iat": 1722500000,
+  "exp": 1722505900,
+  "iss": "radiology-ai-platform",
+  "aud": "radiology-clients",
+  "jti": "unique-token-id-for-logging"
+}
+```
+
+> **التفاصيل الكاملة**: [ADR-004 في docs/ADR.md](ADR.md#adr-004-المصادقة--jwt-short-lived--refresh-tokens)
 
 ### 3.3 المبدأ: Least Privilege
 

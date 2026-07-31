@@ -31,6 +31,7 @@
 - ✅ خطة تنفيذ مرحلية مفصّلة
 - ✅ سكربتات أولية (De-identification, Setup)
 - ✅ قواعد الأمان والخصوصية
+- ✅ قرارات معمارية مُلزمة (4 ADRs — asyncpg + Celery + Alembic + JWT)
 - ⏳ لا يوجد كود تطبيقي بعد (سيُضاف عند بدء التطوير)
 
 ---
@@ -40,6 +41,7 @@
 | القسم | الوصف |
 |------|------|
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | البنية التقنية الكاملة (Diagram + Components + Data Flow) |
+| [docs/ADR.md](docs/ADR.md) | القرارات المعمارية المُلزمة (asyncpg + Celery + Alembic + JWT) |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | خطة التنفيذ من Q4 2026 إلى Q4 2027 |
 | [docs/SECURITY.md](docs/SECURITY.md) | HIPAA, GDPR, PDPL + DICOM De-identification |
 | [docs/DATA_GUIDE.md](docs/DATA_GUIDE.md) | دليل DICOM + Windowing + Preprocessing |
