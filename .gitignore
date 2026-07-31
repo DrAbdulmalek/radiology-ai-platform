@@ -1,0 +1,178 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Radiology AI Platform — .gitignore
+# Critical: prevent PHI, secrets, and large files from being committed.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ─── Python ─────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ─── Virtual Environments ───────────────────────────────────
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# ─── IDEs ──────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+.project
+.pydevproject
+
+# ─── CRITICAL: Medical Data (PHI) ──────────────────────────
+# DICOM files — NEVER commit
+*.dcm
+*.dicom
+*.dic
+*.dcm.gz
+*.dicom.gz
+
+# Data directories
+data/raw/
+data/deidentified/
+data/reports/generated/
+data/reports/reviewed/
+data/reports/final/
+data/metadata/
+data/checksums/
+data/examples/*
+!data/examples/.gitkeep
+!data/examples/README.md
+
+# Audit logs (contain original file paths — may leak info)
+audit_log*.json
+verification_report*.json
+
+# ─── CRITICAL: Model Weights (large + potentially memorize PHI) ───
+models/pretrained/*
+!models/pretrained/.gitkeep
+models/fine_tuned/*
+!models/fine_tuned/.gitkeep
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.onnx
+*.safetensors
+*.bin
+*.gguf
+
+# ─── CRITICAL: Secrets & Credentials ───────────────────────
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+credentials.json
+token.json
+service-account.json
+aws-credentials
+.gcp-credentials
+
+# ─── Logs ──────────────────────────────────────────────────
+logs/
+*.log
+*.log.*
+log/*.log
+
+# ─── OS Generated Files ────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ─── Docker ────────────────────────────────────────────────
+.docker/
+docker-compose.override.yml
+
+# ─── Test Coverage & CI ────────────────────────────────────
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+.dmypy.json
+dmypy.json
+
+# ─── Jupyter Notebook ──────────────────────────────────────
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+notebooks/scratch/
+notebooks/*.ipynb
+!notebooks/examples/*.ipynb
+
+# ─── Database ──────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# ─── Build Artifacts ───────────────────────────────────────
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ─── Docker Volumes (when running locally) ─────────────────
+volumes/
+docker-data/
+
+# ─── Local Documentation ───────────────────────────────────
+docs/_build/
+site/
+
+# ─── Backup Files ──────────────────────────────────────────
+*.bak
+*.backup
+*.old
+*.orig
+*.tmp
+
+# ─── Exemple Files (placeholders OK, real data NOT) ────────
+examples/*.dcm
+examples/real_data/
