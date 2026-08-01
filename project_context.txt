@@ -1,15 +1,14 @@
 # سياق المشروع: radiology-ai-platform
 **المسار:** `/home/runner/work/radiology-ai-platform/radiology-ai-platform`
-**تاريخ التوليد:** 2026-08-01T21:58:54.786390
+**تاريخ التوليد:** 2026-08-01T22:01:21.330608
 
 ## 📊 إحصائيات المشروع
-- **إجمالي الملفات الممسوحة:** 159
-- **الملفات المضمنة:** 12
-- **إجمالي الحجم:** 142,418 بايت
+- **إجمالي الملفات الممسوحة:** 165
+- **الملفات المضمنة:** 11
+- **إجمالي الحجم:** 142,398 بايت
 
 ### اللغات والتقنيات:
 - Markdown: 8 ملف
-- Text: 1 ملف
 - YAML: 1 ملف
 - Shell: 1 ملف
 - Python: 1 ملف
@@ -24,7 +23,6 @@ radiology-ai-platform/
     ├── API_SPEC.md
     ├── ARCHITECTURE.md
     ├── ROADMAP.md
-├── project_context.txt
 ├── research/
     ├── DATASETS.md
     ├── MODELS_COMPARISON.md
@@ -125,16 +123,6 @@ radiology-ai-platform/
 - **العملية تفشل؟** تأكد أن السكريبت موجود في `.github/scripts/repo_to_context.py`
 - **الملف غير موجود؟** تأكد من صلاحيات الـ Workflow (يجب أن يحتوي على `permissions: contents: write`)
 - **مشروع كبير؟** شغل الـ Workflow مع `split = true`
-
-```
-
----
-
-### `project_context.txt`
-**اللغة:** Text | **الأسطر:** 2 | **الحجم:** 20 حرف
-
-```text
-project_context.txt
 
 ```
 
