@@ -1,1 +1,4044 @@
+# سياق المشروع: radiology-ai-platform
+**المسار:** `/home/runner/work/radiology-ai-platform/radiology-ai-platform`
+**تاريخ التوليد:** 2026-08-01T21:58:54.786390
+
+## 📊 إحصائيات المشروع
+- **إجمالي الملفات الممسوحة:** 159
+- **الملفات المضمنة:** 12
+- **إجمالي الحجم:** 142,418 بايت
+
+### اللغات والتقنيات:
+- Markdown: 8 ملف
+- Text: 1 ملف
+- YAML: 1 ملف
+- Shell: 1 ملف
+- Python: 1 ملف
+
+## 🌳 شجرة الملفات
+```
+radiology-ai-platform/
+├── GEMINI_SYSTEM_PROMPT.md
+├── GITHUB_ACTIONS_GUIDE.md
+├── docs/
+    ├── ADR.md
+    ├── API_SPEC.md
+    ├── ARCHITECTURE.md
+    ├── ROADMAP.md
+├── project_context.txt
+├── research/
+    ├── DATASETS.md
+    ├── MODELS_COMPARISON.md
+├── scripts/
+    ├── dicom_deidentify.py
+    ├── setup_repo.sh
+├── setup/
+    ├── docker-compose.yml
+```
+
+## 📁 محتوى الملفات
+
+### `GITHUB_ACTIONS_GUIDE.md`
+**اللغة:** Markdown | **الأسطر:** 85 | **الحجم:** 2,001 حرف
+
+```markdown
+# 🚀 دليل استخدام سياق المشروع من الجوال
+
+## الهدف
+تشغيل سكريبت استخراج السياق أونلاين على GitHub دون الحاجة إلى كمبيوتر.
+
+---
+
+## ⚡ الخطوات (من الجوال)
+
+### 1. إضافة الملفات للمستودع
+
+في مستودعك على GitHub، أنشئ هذين الملفين (يمكنك من التطبيق أو المتصفح):
+
+```
+.github/
+├── scripts/
+│   └── repo_to_context.py    ← السكريبت
+└── workflows/
+    └── generate-context.yml  ← الـ Workflow
+```
+
+**للإنشاء من الجوال:**
+1. افتح تطبيق GitHub
+2. ادخل إلى مستودعك
+3. اضغط ➕ (Add file) → Create new file
+4. اكتب المسار: `.github/workflows/generate-context.yml`
+5. الصق محتوى ملف الـ Workflow
+6. اضغط Commit
+7. كرر نفس الخطوة لملف السكريبت: `.github/scripts/repo_to_context.py`
+
+---
+
+### 2. تشغيل الـ Workflow
+
+1. من تطبيق GitHub، ادخل إلى مستودعك
+2. اذهب إلى تبويب **Actions** (الأسفل)
+3. اختر **📦 Generate Project Context**
+4. اضغط **Run workflow** (الأعلى)
+5. اترك الإعدادات الافتراضية واضغط **Run workflow** مرة أخرى
+
+---
+
+### 3. تحميل الملف
+
+1. انتظر 30 ثانية حتى تكتمل العملية (سترى ✅ أخضر)
+2. ارجع إلى تبويب **Code** (الملفات)
+3. ستجد ملفاً جديداً باسم `project_context.txt`
+4. اضغط عليه → اضغط ⬇️ (Download) أو انسخ النص
+
+---
+
+## 📋 ما يفعله السكريبت
+
+- ✅ يقرأ كل ملفات الكود في المشروع
+- ✅ يستبعد الصور والملفات الثنائية
+- ✅ ينظمها في ملف نصي واحد منسق
+- ✅ يضيف شجرة الملفات + الإحصائيات
+- ✅ يدعم اللغة العربية (UTF-8)
+
+---
+
+## ⚙️ خيارات متقدمة (اختياري)
+
+عند تشغيل الـ Workflow، يمكنك تغيير:
+- **max_size**: حجم السياق (افتراضي 800000 حرف)
+- **split**: `true` إذا كان المشروع كبيراً (ينتج عدة ملفات)
+- **format**: `txt` أو `md`
+
+---
+
+## 🔄 الاستخدام مع Gemini Flash
+
+بعد تحميل `project_context.txt`:
+1. افتح [Gemini Flash](https://gemini.google.com) في متصفح الجوال
+2. ارفع الملف
+3. ابدأ المحادثة: *"هذا مشروعي. أريدك أن تُحسّن دالة X"*
+
+---
+
+## 🛟 في حال واجهت مشكلة
+
+- **العملية تفشل؟** تأكد أن السكريبت موجود في `.github/scripts/repo_to_context.py`
+- **الملف غير موجود؟** تأكد من صلاحيات الـ Workflow (يجب أن يحتوي على `permissions: contents: write`)
+- **مشروع كبير؟** شغل الـ Workflow مع `split = true`
+
+```
+
+---
+
+### `project_context.txt`
+**اللغة:** Text | **الأسطر:** 2 | **الحجم:** 20 حرف
+
+```text
 project_context.txt
+
+```
+
+---
+
+### `GEMINI_SYSTEM_PROMPT.md`
+**اللغة:** Markdown | **الأسطر:** 203 | **الحجم:** 6,875 حرف
+
+```markdown
+# 🎭 SYSTEM PROMPT — Gemini Flash
+## مطور Backend متخصص في منصة AI للإشعاعية (radiology-ai-platform)
+
+---
+
+## 1. هويتك (Persona)
+
+أنت **مطور Backend متمرس** متخصص في:
+- بناء منصات AI للمعالجة الطبية (Medical AI Platforms)
+- هندسة الخدمات المصغّرة (Microservices Architecture)
+- معالجة اللغة العربية الطبية (Arabic Medical NLP)
+- أنظمة إخفاء الهوية الطبية (DICOM de-identification, PS3.15 Annex E)
+
+خبرتك تمتد لمشاريع رعاية صحية في الشرق الأوسط، وتفهم القيود:
+- الالتزام بـ HIPAA / GDPR / PDPL السعودي
+- التقارير الإشعاعية تُكتب بالعربية الفصحى مع مصطلحات معتمدة
+- **PHI (Patient Health Information) خط أحمر** — أي تسريب = كارثة قانونية وأخلاقية
+
+---
+
+## 2. سياق المشروع (Project Context)
+
+المشروع: **radiology-ai-platform** — منصة AI لتوليد وتقييم التقارير الإشعاعية بالعربية.
+
+### التقنيات المستخدمة:
+- **Python 3.11+ / 3.12**
+- **FastAPI** — الـ API framework
+- **Pydantic v2** — التحقق من البيانات والـ schemas
+- **SQLAlchemy + Alembic** — ORM والهجرات
+- **pytest + pytest-asyncio + hypothesis** — الاختبارات
+- **pydicom** — قراءة/معالجة ملفات DICOM
+- **pyparsing** — تحليل القواعد النحوية (grammar.py)
+- **ruff + mypy + bandit** — جودة وأمان الكود
+
+### بنية المشروع:
+```
+src/
+├── services/
+│   ├── deidentification.py          ← محرك 4 مكونات
+│   └── deidentification_patterns.py ← 9 فئات PHI
+├── ai/arabic/
+│   ├── schemas.py                   ← Pydantic + validators
+│   ├── terminology.py               ← 130+ مصطلح
+│   ├── grammar.py                   ← 25 قاعدة نحوية
+│   ├── quality.py                   ← Rubric + 15 كلمة حرجة
+│   ├── examples.py                  ← 5 تقارير مرجعية
+│   └── normalizer.py                ← عامية → فصحى (85+ mapping)
+└── api/routers/
+    ├── dicom.py                     ← verify-deidentification
+    └── reports.py                   ← quality-check
+tests/                               ← 173+ اختبار
+docs/
+├── DEIDENTIFICATION_ENGINE.md
+└── ARABIC_REPORT_SCHEMA.md
+```
+
+---
+
+## 3. قيود صارمة (Hard Constraints)
+
+### أ. برمجية:
+- ✅ **Python 3.11+** — Type Hints إلزامية، استخدم `from __future__ import annotations` إذا لزم.
+- ✅ **FastAPI async** — استخدم `async def` للـ endpoints،避免 blocking calls.
+- ✅ **Pydantic v2** — استخدم `field_validator` و `model_validator` (لا v1 style).
+- ✅ **Dependency Injection** — عبر `Depends()`، لا globals.
+- ✅ **ruff compliant** — يستخدم ruff بدلاً من black/flake8.
+- ✅ **mypy strict** — لا `Any` بدون تعليق `# type: ignore[reason]`.
+
+### ب. طبية / أمنية:
+- ✅ **PHI Hard Gate** — لا تُمرّر أي بيانات مريض حقيقي عبر الـ pipeline قبل التحقق من de-identification.
+- ✅ **9 فئات PHI** — التزم بـ: الاسم، الهوية الوطنية، التاريخ، الهاتف، العنوان، البريد، المهنة، الجهة، ملاحظات الهوية.
+- ✅ **Saudi ID checksum** — استخدم خوارزمية Luhn للتحقق من رقم الهوية السعودية (10 أرقام).
+- ✅ **15 كلمة حرجة** — في `quality.py`، استخدم القائمة المعتمدة (نزف، نزيف، استرواح، انصمام، توتري، احتشاء، جلطة، صدمة، تسمم، توقف، انهيار، تمزق، انسداد، اختناق، نزف دموي).
+- ❌ **ممنوع** تخزين PHI في logs أو error messages.
+- ❌ **ممنوع** استخدام `print()` للـ debugging — استخدم `logging` مع redaction.
+
+### ج. اختبارية:
+- ✅ كل دالة جديدة تحتاج اختبار (unit + edge case).
+- ✅ استخدم `hypothesis` للـ property-based testing عند المنطق المعقد.
+- ✅ التغطية (Coverage) ≥ 80% إلزامية.
+
+---
+
+## 4. مصطلحات طبية معتمدة (Medical Dictionary)
+
+> نفس قائمة medical_doc_gui الـ 27 مصطلحاً، مع إضافات خاصة بالـ platform:
+
+### إضافات خاصة بالـ schemas والـ normalizer:
+- `تقرير إشعاعي` — Radiology report
+- `نتيجة حرجة` — Critical finding
+- `إخفاء الهوية` — De-identification
+- `بيانات صحية محمية` — PHI (Protected Health Information)
+- `هوية وطنية` — National ID
+- `checksum` — تحقق من المجموع (للأرقام)
+- `توكننة` — Tokenization
+- `نمط مطابقة` — Pattern matching
+- `قاعدة نحوية` — Grammar rule
+- `مصطلح طبي` — Medical terminology
+
+> **⚠️ مرجع المصطلحات الإشعاعية الكامل**: راجع `src/ai/arabic/terminology.py` (130+ مصطلح). لا تختلق مصطلحات جديدة.
+
+---
+
+## 5. صيغة المخرجات المطلوبة (Output Format)
+
+```markdown
+### 📌 الملف: `src/services/deidentification.py`
+
+**التغييرات:**
+1. أضيف validator للـ Saudi ID checksum
+2. ...
+
+**الكود المُحدَّث:**
+```python
+"""محرك إخفاء الهوية — 4 مكونات للمعالجة."""
+from __future__ import annotations
+import re
+from typing import Final
+
+# تعليق عربي يشرح الـ pattern
+SAUDI_ID_PATTERN: Final[str] = r"^\d{10}$"
+
+def validate_saudi_id_checksum(national_id: str) -> bool:
+    """
+    التحقق من رقم الهوية السعودية باستخدام خوارزمية Luhn.
+
+    Args:
+        national_id: رقم الهوية (10 أرقام)
+
+    Returns:
+        True إذا كان الرقم صحيحاً
+    """
+    try:
+        if not re.fullmatch(SAUDI_ID_PATTERN, national_id):
+            return False
+        # منطق Luhn
+        ...
+    except Exception as e:
+        raise RuntimeError(f"خطأ في التحقق من الهوية: {e}") from e
+```
+
+**ملاحظات المراجعة:**
+- نقطة 1
+- نقطة 2
+```
+
+### قواعد الكود:
+- 📝 **التعليقات بالعربية** داخل الكود، **أسماء المتغيرات بالإنجليزية**.
+- 📝 **Docstrings بالعربية** (مع Type Hints بالإنجليزية).
+- 📝 **Final constants** بالـ UPPER_SNAKE_CASE.
+- 📝 **Type Hints** إلزامية في كل دالة عامة (public).
+
+---
+
+## 6. أمثلة على الطلبات (Request Examples)
+
+### ✅ طلب جيد:
+> "أضف validator إلى `src/ai/arabic/schemas.py` يتحقق من أن حقل `critical_findings` لا يحتوي على أكثر من 5 عبارات، وأن كل عبارة موجودة في `terminology.py`. استخدم `field_validator` من Pydantic v2 وأرجع `ValueError` عربياً مفصّلاً عند الفشل."
+
+### ❌ طلب سيء:
+> "حسّن الـ schemas" (غامض — لا يوجد ملف/دالة محددة)
+
+### ✅ طلب جيد:
+> "وسّع `ClinicalTextNormalizer` في `src/ai/arabic/normalizer.py` بإضافة 60 mapping جديد موزعة على 6 فئات (قلبي، هضمي، عصبي، بولي، عضلي، عام). لا تحذف الـ 25 mapping الموجودة. أضف اختبار parametric يمرّ على كل mapping."
+
+### ❌ طلب سيء:
+> "أضف مصطلحات طبية" (غامض — أي فئة؟ كم مصطلح؟)
+
+---
+
+## 7. سياق المشروع المرفق (Attached Context)
+
+📎 **ملف `project_context.txt` المرفق** يحتوي على:
+- شجرة ملفات المشروع بالكامل (src/, tests/, docs/, .github/)
+- محتوى كل ملف Python/YAML/Markdown
+- الإحصائيات (عدد الملفات، اللغات، الاعتماديات)
+
+**كيفية الاستخدام:**
+- ابحث عن الملف المطلوب في السياق قبل الكتابة.
+- لا تختلق أسماء ملفات أو دوال غير موجودة.
+- إذا لم تجد الملف، اسأل: "هذا الملف غير موجود في السياق — هل تقصد X؟"
+
+---
+
+## 8. قواعد التفاعل (Interaction Rules)
+
+1. **اسأل قبل أن تكتب** — Clarifying Questions عند الغموض.
+2. **اشرح النهج أولاً** — Approach قبل Implementation.
+3. **احترم الحدود** — لا تحذف دوال/فئات موجودة إلا بأمر صريح.
+4. **اختبار مع كل كود** — unit test + edge case.
+5. **التوافق مع البنية** — respect `src/services/`, `src/ai/arabic/`, `src/api/routers/`.
+6. **عدم كسر الـ imports** — تحقق من `from src.x import y` قبل الـ commit.
+
+---
+
+## 9. التذكير النهائي (Final Reminder)
+
+> **"هذه المنصة تتعامل مع بيانات مرضى حقيقيين. أي خطأ في إخفاء الهوية = انتهاك HIPAA/GDPR/PDPL. أي خطأ في الكلمات الحرجة = تشخيص خاطئ. اكتب الكود كأن مريضاً سيموت إذا أخطأت."**
+
+---
+
+**جاهز للعمل. ابدأ بقراءة `project_context.txt` المرفق، ثم انتظر طلبي.**
+
+```
+
+---
+
+### `setup/docker-compose.yml`
+**اللغة:** YAML | **الأسطر:** 307 | **الحجم:** 9,062 حرف
+
+```yaml
+# Docker Compose — Radiology AI Platform Development Stack
+# Usage: docker-compose -f setup/docker-compose.yml up -d
+
+version: "3.9"
+
+services:
+  # ────────────────────────────────────────────────────────────
+  # PACS Server — Orthanc
+  # ────────────────────────────────────────────────────────────
+  orthanc:
+    image: orthancteam/orthanc:24.7.2
+    container_name: radiology-orthanc
+    restart: unless-stopped
+    ports:
+      - "8042:8042"  # REST API + Web UI
+      - "4242:4242"  # DICOM protocol
+    environment:
+      ORTHANC_NAME: "Radiology AI Platform"
+      ORTHANC_PASSWORD: "${ORTHANC_PASSWORD:-change_me}"
+      ORTHANC_JSON: |
+        {
+          "AuthenticationEnabled": true,
+          "RemoteAccessAllowed": true,
+          "RegisteredUsers": {
+            "admin": "${ORTHANC_PASSWORD:-change_me}"
+          },
+          "DicomAet": "ORTHANC",
+          "DicomPort": 4242,
+          "HttpPort": 8042,
+          "PostgreSQL": {
+            "EnableIndex": true,
+            "EnableStorage": false,
+            "Host": "postgres",
+            "Port": 5432,
+            "Database": "orthanc",
+            "Username": "${POSTGRES_USER:-radiology_admin}",
+            "Password": "${POSTGRES_PASSWORD:-change_me}"
+          },
+          "AwsS3Storage": {
+            "Enable": true,
+            "BucketName": "radiology-dicom",
+            "Region": "us-east-1",
+            "Endpoint": "http://minio:9000",
+            "AccessKey": "${MINIO_ROOT_USER:-minioadmin}",
+            "SecretKey": "${MINIO_ROOT_PASSWORD:-change_me}",
+            "Encryption": true
+          }
+        }
+    volumes:
+      - orthanc_data:/var/lib/orthanc/db
+    depends_on:
+      - postgres
+      - minio
+    networks:
+      - radiology-net
+
+  # ────────────────────────────────────────────────────────────
+  # Primary Database — PostgreSQL
+  # ────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16.4-alpine
+    container_name: radiology-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER:-radiology_admin}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-change_me}"
+      POSTGRES_DB: "radiology"
+      POSTGRES_MULTIPLE_DATABASES: "orthanc,milvus,keycloak"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-radiology_admin}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - radiology-net
+
+  # ────────────────────────────────────────────────────────────
+  # Object Storage — MinIO (S3-compatible)
+  # ────────────────────────────────────────────────────────────
+  minio:
+    image: minio/minio:RELEASE.2024-08-17T01-24-54Z
+    container_name: radiology-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"  # S3 API
+      - "9001:9001"  # Web Console
+    environment:
+      MINIO_ROOT_USER: "${MINIO_ROOT_USER:-minioadmin}"
+      MINIO_ROOT_PASSWORD: "${MINIO_ROOT_PASSWORD:-change_me}"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - radiology-net
+
+  # ────────────────────────────────────────────────────────────
+  # Vector Database — Milvus
+  # ────────────────────────────────────────────────────────────
+  milvus-etcd:
+    image: quay.io/coreos/etcd:v3.5.5
+    container_name: radiology-milvus-etcd
+    restart: unless-stopped
+    environment:
+      - ETCD_AUTO_COMPACTION_MODE=revision
+      - ETCD_AUTO_COMPACTION_RETENTION=1000
+      - ETCD_QUOTA_BACKEND_BYTES=4294967296
+      - ETCD_SNAPSHOT_COUNT=50000
+    volumes:
+      - milvus_etcd_data:/etcd
+    command: etcd -advertise-client-urls=http://etcd:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
+    networks:
+      - radiology-net
+
+  milvus-minio:
+    image: minio/minio:RELEASE.2024-08-17T01-24-54Z
+    container_name: radiology-milvus-minio
+    restart: unless-stopped
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+    volumes:
+      - milvus_minio_data:/minio_data
+    command: minio server /minio_data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    networks:
+      - radiology-net
+
+  milvus:
+    image: milvusdb/milvus:v2.4.10
+    container_name: radiology-milvus
+    restart: unless-stopped
+    command: ["milvus", "run", "standalone"]
+    environment:
+      ETCD_ENDPOINTS: milvus-etcd:2379
+      MINIO_ADDRESS: milvus-minio:9000
+    ports:
+      - "19530:19530"  # gRPC
+      - "9091:9091"    # metrics
+    depends_on:
+      - milvus-etcd
+      - milvus-minio
+    volumes:
+      - milvus_data:/var/lib/milvus
+    networks:
+      - radiology-net
+
+  # ────────────────────────────────────────────────────────────
+  # Message Broker — Redis
+  # ────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7.4-alpine
+    container_name: radiology-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass "${REDIS_PASSWORD:-change_me}" --maxmemory 2gb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-change_me}", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - radiology-net
+
+  # ────────────────────────────────────────────────────────────
+  # API Service — FastAPI
+  # ────────────────────────────────────────────────────────────
+  api:
+    build:
+      context: ..
+      dockerfile: setup/Dockerfile.api
+    container_name: radiology-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      orthanc:
+        condition: service_started
+    volumes:
+      - ../src:/app/src
+      - ../data:/app/data
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - radiology-net
+
+  # ────────────────────────────────────────────────────────────
+  # Background Worker — Celery
+  # ────────────────────────────────────────────────────────────
+  worker:
+    build:
+      context: ..
+      dockerfile: setup/Dockerfile.worker
+    container_name: radiology-worker
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    depends_on:
+      - redis
+      - postgres
+      - api
+    volumes:
+      - ../src:/app/src
+      - ../data:/app/data
+      - ../models:/app/models
+    command: celery -A src.worker.celery_app worker --loglevel=info --concurrency=2
+    networks:
+      - radiology-net
+
+  # ────────────────────────────────────────────────────────────
+  # Celery Monitor — Flower
+  # ────────────────────────────────────────────────────────────
+  flower:
+    image: mher/flower:2.0.1
+    container_name: radiology-flower
+    restart: unless-stopped
+    ports:
+      - "5555:5555"
+    environment:
+      - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD:-change_me}@redis:6379/0
+      - FLOWER_BASIC_AUTH=admin:${FLOWER_PASSWORD:-change_me}
+    depends_on:
+      - redis
+      - worker
+    networks:
+      - radiology-net
+
+  # ────────────────────────────────────────────────────────────
+  # Monitoring — Prometheus
+  # ────────────────────────────────────────────────────────────
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: radiology-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - radiology-net
+
+  # ────────────────────────────────────────────────────────────
+  # Monitoring — Grafana
+  # ────────────────────────────────────────────────────────────
+  grafana:
+    image: grafana/grafana:11.2.0
+    container_name: radiology-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on:
+      - prometheus
+    networks:
+      - radiology-net
+
+# ────────────────────────────────────────────────────────────
+# Networks
+# ────────────────────────────────────────────────────────────
+networks:
+  radiology-net:
+    driver: bridge
+    name: radiology-network
+
+# ────────────────────────────────────────────────────────────
+# Volumes
+# ────────────────────────────────────────────────────────────
+volumes:
+  orthanc_data:
+  postgres_data:
+  minio_data:
+  milvus_etcd_data:
+  milvus_minio_data:
+  milvus_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+
+```
+
+---
+
+### `scripts/setup_repo.sh`
+**اللغة:** Shell | **الأسطر:** 341 | **الحجم:** 10,691 حرف
+
+```shell
+#!/usr/bin/env bash
+# ─────────────────────────────────────────────────────────────────────────────
+# Radiology AI Platform — Setup Script
+# Initializes the development environment for the Radiology AI Platform.
+#
+# Usage:
+#   chmod +x scripts/setup_repo.sh
+#   ./scripts/setup_repo.sh
+#
+# Prerequisites:
+#   - Docker 24+
+#   - Docker Compose v2
+#   - Python 3.11+
+# ─────────────────────────────────────────────────────────────────────────────
+
+set -euo pipefail
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+print_header() {
+    echo -e "${BLUE}==========================================${NC}"
+    echo -e "${BLUE}  $1${NC}"
+    echo -e "${BLUE}==========================================${NC}"
+}
+
+print_success() {
+    echo -e "${GREEN}✓ $1${NC}"
+}
+
+print_warning() {
+    echo -e "${YELLOW}⚠ $1${NC}"
+}
+
+print_error() {
+    echo -e "${RED}✗ $1${NC}"
+}
+
+# Get the repository root (parent of scripts/)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
+print_header "Radiology AI Platform — Setup"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 1. Check dependencies
+# ─────────────────────────────────────────────────────────────────────────────
+print_header "Step 1: Checking dependencies"
+
+check_command() {
+    if command -v "$1" >/dev/null 2>&1; then
+        print_success "$1 found: $(command -v "$1")"
+        return 0
+    else
+        print_error "$1 not found"
+        return 1
+    fi
+}
+
+MISSING_DEPS=0
+check_command docker || MISSING_DEPS=1
+check_command docker-compose || check_command "docker compose" || MISSING_DEPS=1
+check_command python3 || MISSING_DEPS=1
+check_command git || MISSING_DEPS=1
+
+if [ "$MISSING_DEPS" -eq 1 ]; then
+    print_error "Missing dependencies. Please install them and re-run."
+    exit 1
+fi
+
+# Check Python version
+PYTHON_VERSION=$(python3 -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')
+if python3 -c 'import sys; exit(0 if sys.version_info >= (3, 11) else 1)'; then
+    print_success "Python $PYTHON_VERSION (≥3.11)"
+else
+    print_error "Python 3.11+ required, found $PYTHON_VERSION"
+    exit 1
+fi
+
+# Check Docker daemon
+if ! docker info >/dev/null 2>&1; then
+    print_error "Docker daemon is not running. Start Docker and re-run."
+    exit 1
+fi
+print_success "Docker daemon is running"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 2. Create directory structure
+# ─────────────────────────────────────────────────────────────────────────────
+print_header "Step 2: Creating directory structure"
+
+DIRECTORIES=(
+    "data/raw"
+    "data/deidentified"
+    "data/reports/generated"
+    "data/reports/reviewed"
+    "data/reports/final"
+    "data/metadata"
+    "data/checksums"
+    "data/examples"
+    "logs"
+    "models/pretrained"
+    "models/fine_tuned"
+    "src"
+    "tests"
+    "notebooks"
+)
+
+for dir in "${DIRECTORIES[@]}"; do
+    mkdir -p "$dir"
+    # Create .gitkeep to preserve empty dirs
+    touch "$dir/.gitkeep"
+    print_success "Created: $dir"
+done
+
+# Set restrictive permissions on data directories (PHI protection)
+chmod 700 data/raw data/deidentified 2>/dev/null || true
+print_success "Set restrictive permissions on data/ directories"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 3. Create .env file (if not exists)
+# ─────────────────────────────────────────────────────────────────────────────
+print_header "Step 3: Environment configuration"
+
+if [ ! -f ".env" ]; then
+    # Generate random secrets
+    POSTGRES_PASSWORD=$(openssl rand -hex 24 2>/dev/null || echo "change_me_to_random")
+    MINIO_PASSWORD=$(openssl rand -hex 24 2>/dev/null || echo "change_me_to_random")
+    REDIS_PASSWORD=$(openssl rand -hex 24 2>/dev/null || echo "change_me_to_random")
+    SECRET_KEY=$(openssl rand -hex 32 2>/dev/null || echo "change_me_to_random")
+    ORTHANC_PASSWORD=$(openssl rand -hex 16 2>/dev/null || echo "change_me")
+    GRAFANA_PASSWORD=$(openssl rand -hex 12 2>/dev/null || echo "admin")
+    FLOWER_PASSWORD=$(openssl rand -hex 12 2>/dev/null || echo "change_me")
+
+    cat > .env << EOF
+# ─────────────────────────────────────────────────────────────────────────────
+# Radiology AI Platform — Environment Variables
+# IMPORTANT: This file contains secrets. Do NOT commit to Git.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# PostgreSQL
+POSTGRES_USER=radiology_admin
+POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+POSTGRES_DB=radiology
+
+# MinIO (S3-compatible object storage)
+MINIO_ROOT_USER=minioadmin
+MINIO_ROOT_PASSWORD=$MINIO_PASSWORD
+
+# Redis
+REDIS_PASSWORD=$REDIS_PASSWORD
+
+# API / JWT
+SECRET_KEY=$SECRET_KEY
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=15
+REFRESH_TOKEN_EXPIRE_HOURS=24
+
+# Orthanc PACS
+ORTHANC_PASSWORD=$ORTHANC_PASSWORD
+
+# Grafana
+GRAFANA_PASSWORD=$GRAFANA_PASSWORD
+
+# Flower (Celery monitor)
+FLOWER_PASSWORD=$FLOWER_PASSWORD
+
+# AI / Model settings
+MODEL_PATH=./models/pretrained
+CUDA_VISIBLE_DEVICES=0
+MODEL_DEVICE=auto
+
+# Logging
+LOG_LEVEL=INFO
+STRUCTLOG_LEVEL=INFO
+
+# Environment
+ENVIRONMENT=development
+DEBUG=true
+EOF
+    chmod 600 .env
+    print_success "Created .env with generated secrets"
+    print_warning "Review and customize .env before production use"
+else
+    print_warning ".env already exists, skipping"
+fi
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 4. Create Python virtual environment
+# ─────────────────────────────────────────────────────────────────────────────
+print_header "Step 4: Python virtual environment"
+
+if [ ! -d ".venv" ]; then
+    python3 -m venv .venv
+    print_success "Created virtual environment: .venv"
+else
+    print_warning ".venv already exists, skipping"
+fi
+
+# Activate and install
+source .venv/bin/activate
+print_success "Activated virtual environment"
+
+# Upgrade pip
+pip install --upgrade pip setuptools wheel >/dev/null 2>&1
+print_success "Upgraded pip"
+
+# Install dependencies
+if [ -f "setup/requirements.txt" ]; then
+    print_warning "Installing Python dependencies (this may take several minutes)..."
+    pip install -r setup/requirements.txt
+    print_success "Installed Python dependencies"
+else
+    print_warning "setup/requirements.txt not found, skipping"
+fi
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 5. Start Docker services
+# ─────────────────────────────────────────────────────────────────────────────
+print_header "Step 5: Starting Docker services"
+
+cd setup
+
+# Pull images first (so failures show before starting)
+print_warning "Pulling Docker images (this may take a while on first run)..."
+if docker-compose pull 2>/dev/null || docker compose pull; then
+    print_success "Pulled Docker images"
+else
+    print_warning "Some images failed to pull (will retry on up)"
+fi
+
+# Start services
+print_warning "Starting services..."
+if docker-compose up -d 2>/dev/null; then
+    print_success "Started services (docker-compose v1)"
+elif docker compose up -d; then
+    print_success "Started services (docker compose v2)"
+else
+    print_error "Failed to start Docker services"
+    exit 1
+fi
+
+cd "$REPO_ROOT"
+
+# Wait for services to be healthy
+print_warning "Waiting for services to be healthy (30s)..."
+sleep 30
+
+# Check service status
+print_warning "Service status:"
+if command -v docker-compose >/dev/null 2>&1; then
+    docker-compose ps 2>/dev/null || true
+else
+    docker compose ps 2>/dev/null || true
+fi
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 6. Initialize database (placeholder for Alembic migrations)
+# ─────────────────────────────────────────────────────────────────────────────
+print_header "Step 6: Database initialization"
+
+# Check if PostgreSQL is ready
+for i in {1..30}; do
+    if docker exec radiology-postgres pg_isready -U radiology_admin >/dev/null 2>&1; then
+        print_success "PostgreSQL is ready"
+        break
+    fi
+    sleep 2
+    if [ $i -eq 30 ]; then
+        print_warning "PostgreSQL not ready after 60s — skip DB init"
+    fi
+done
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 7. Final verification
+# ─────────────────────────────────────────────────────────────────────────────
+print_header "Step 7: Verification"
+
+# Test Orthanc
+if curl -s -u "admin:${ORTHANC_PASSWORD:-change_me}" http://localhost:8042/system >/dev/null 2>&1; then
+    print_success "Orthanc is responding at http://localhost:8042"
+else
+    print_warning "Orthanc not yet responding (may still be starting up)"
+fi
+
+# Test MinIO
+if curl -s http://localhost:9000/minio/health/live >/dev/null 2>&1; then
+    print_success "MinIO is responding at http://localhost:9000"
+else
+    print_warning "MinIO not yet responding"
+fi
+
+# Test Redis
+if docker exec radiology-redis redis-cli -a "${REDIS_PASSWORD:-change_me}" ping >/dev/null 2>&1; then
+    print_success "Redis is responding"
+else
+    print_warning "Redis not yet responding"
+fi
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 8. Summary
+# ─────────────────────────────────────────────────────────────────────────────
+print_header "Setup Complete!"
+
+echo ""
+echo -e "${GREEN}Your Radiology AI Platform development environment is ready!${NC}"
+echo ""
+echo "Services:"
+echo "  • Orthanc PACS:    http://localhost:8042  (admin / ${ORTHANC_PASSWORD:-change_me})"
+echo "  • MinIO Console:   http://localhost:9001  (minioadmin / ********)"
+echo "  • API Docs:        http://localhost:8000/docs  (when API is running)"
+echo "  • Flower Monitor:  http://localhost:5555  (admin / ${FLOWER_PASSWORD:-change_me})"
+echo "  • Grafana:         http://localhost:3000  (admin / ${GRAFANA_PASSWORD:-admin})"
+echo "  • Prometheus:      http://localhost:9090"
+echo ""
+echo "Next steps:"
+echo "  1. Review and customize .env"
+echo "  2. Test DICOM de-identification:"
+echo "     python scripts/dicom_deidentify.py --input data/examples/ --output data/deidentified/ --verify"
+echo "  3. Read the documentation in docs/"
+echo "  4. Start development!"
+echo ""
+echo -e "${YELLOW}⚠ Important security notes:${NC}"
+echo "  • .env contains secrets — NEVER commit it to Git"
+echo "  • data/raw/ and data/deidentified/ must never be committed"
+echo "  • Use only de-identified DICOM files in this repository"
+echo ""
+echo -e "${BLUE}Documentation:${NC}"
+echo "  • Architecture:  docs/ARCHITECTURE.md"
+echo "  • Roadmap:       docs/ROADMAP.md"
+echo "  • Security:      docs/SECURITY.md"
+echo "  • Data Guide:    docs/DATA_GUIDE.md"
+echo "  • Integrations:  docs/INTEGRATIONS.md"
+echo "  • API Spec:      docs/API_SPEC.md"
+echo ""
+
+```
+
+---
+
+### `scripts/dicom_deidentify.py`
+**اللغة:** Python | **الأسطر:** 532 | **الحجم:** 17,620 حرف
+**الاعتماديات:**
+- `from __future__ import annotations`
+- `import argparse`
+- `import hashlib`
+- `import json`
+- `import logging`
+- `import sys`
+- `from datetime import datetime, timedelta`
+- `from pathlib import Path`
+- `from typing import Any`
+- `import pydicom`
+
+```python
+#!/usr/bin/env python3
+"""
+dicom_deidentify.py -- De-identify DICOM files for research use.
+
+Follows DICOM PS3.15 Annex E (Basic Application Level Confidentiality Profile).
+
+Usage:
+    # Single file
+    python dicom_deidentify.py \\
+        --input patient.dcm \\
+        --output data/deidentified/ \\
+        --date-shift -127
+
+    # Directory
+    python dicom_deidentify.py \\
+        --input /dicom/raw/ \\
+        --output data/deidentified/ \\
+        --date-shift -127 \\
+        --audit audit_2026_08_01.json
+
+Tags handling:
+    - Removed: PatientName, PatientAddress, TelephoneNumbers, Physician names, etc.
+    - Hashed:  PatientID, StudyInstanceUID, SeriesInstanceUID, SOPInstanceUID
+    - Shifted: All dates/times (same shift per study to preserve intervals)
+
+Author: DrAbdulmalek
+License: Apache 2.0
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import logging
+import sys
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Any
+
+try:
+    import pydicom
+    from pydicom.uid import ExplicitVRLittleEndian
+except ImportError:
+    print(
+        "Error: pydicom is required. Install with:\n"
+        "  pip install pydicom pylibjpeg pylibjpeg-openjpeg pylibjpeg-libjpeg",
+        file=sys.stderr,
+    )
+    sys.exit(1)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Logging
+# ─────────────────────────────────────────────────────────────────────────────
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+logger = logging.getLogger("dicom_deidentify")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DICOM Tag Categories (per PS3.15 Annex E)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Tags to remove entirely (direct identifiers)
+TAGS_TO_REMOVE: list[tuple[int, int]] = [
+    # Patient identification
+    (0x0010, 0x0010),  # PatientName
+    (0x0010, 0x1000),  # OtherPatientIDs
+    (0x0010, 0x1001),  # OtherPatientIDsSequence
+    (0x0010, 0x1002),  # OtherPatientNames
+    (0x0010, 0x1040),  # PatientAddress
+    (0x0010, 0x2154),  # PatientTelephoneNumbers
+    (0x0010, 0x21B0),  # AdditionalPatientHistory
+    (0x0010, 0x21F0),  # PatientReligiousPreference
+    (0x0010, 0x4000),  # PatientComments
+    # Physician/Operator identification
+    (0x0008, 0x0090),  # ReferringPhysicianName
+    (0x0008, 0x0092),  # ReferringPhysicianAddress
+    (0x0008, 0x0094),  # ReferringPhysicianTelephoneNumbers
+    (0x0008, 0x0096),  # ReferringPhysicianIdentificationSequence
+    (0x0008, 0x1048),  # PhysiciansOfRecord
+    (0x0008, 0x1050),  # PerformingPhysicianName
+    (0x0008, 0x1052),  # PerformingPhysicianIdentificationSequence
+    (0x0008, 0x1060),  # NameOfPhysiciansReadingStudy
+    (0x0008, 0x1062),  # PhysiciansReadingStudyIdentificationSequence
+    (0x0008, 0x1070),  # OperatorsName
+    (0x0008, 0x1072),  # OperatorIdentificationSequence
+    (0x0008, 0x1120),  # ReferencedPatientSequence
+    # Request attributes
+    (0x0032, 0x1032),  # RequestingPhysician
+    (0x0032, 0x1033),  # RequestingService
+    (0x0032, 0x1060),  # RequestedProcedureID
+    # Interpretation attributes
+    (0x4008, 0x0114),  # PhysicianApprovingInterpretation
+    (0x4008, 0x0118),  # InterpretationTranscriber
+    (0x4008, 0x011C),  # InterpretationText
+    # Institution identification (optional — comment out if needed)
+    (0x0008, 0x0080),  # InstitutionName
+    (0x0008, 0x0081),  # InstitutionAddress
+    (0x0008, 0x1040),  # InstitutionalDepartmentName
+]
+
+# Tags to hash (preserve uniqueness without revealing original value)
+TAGS_TO_HASH: list[tuple[int, int]] = [
+    (0x0010, 0x0020),  # PatientID
+    (0x0010, 0x1000),  # OtherPatientIDs (also removed above — hash wins if both apply)
+    (0x0020, 0x000D),  # StudyInstanceUID
+    (0x0020, 0x000E),  # SeriesInstanceUID
+    (0x0008, 0x0018),  # SOPInstanceUID
+    (0x0008, 0x1155),  # ReferencedSOPInstanceUID
+    (0x0008, 0x0050),  # AccessionNumber
+    (0x0040, 0xA073),  # VerifyingObserverSequence (children are also handled)
+]
+
+# Tags whose dates/times should be shifted (preserve intervals within a study)
+TAGS_TO_SHIFT_DATE: list[tuple[int, int]] = [
+    (0x0010, 0x0030),  # PatientBirthDate
+    (0x0008, 0x0020),  # StudyDate
+    (0x0008, 0x0021),  # SeriesDate
+    (0x0008, 0x0022),  # AcquisitionDate
+    (0x0008, 0x0023),  # ContentDate
+    (0x0008, 0x0024),  # OverlayDate
+    (0x0008, 0x0025),  # CurveDate
+    (0x0038, 0x0010),  # AdmissionDate
+    (0x0038, 0x0020),  # DischargeDate
+]
+
+TAGS_TO_SHIFT_TIME: list[tuple[int, int]] = [
+    (0x0008, 0x0030),  # StudyTime
+    (0x0008, 0x0031),  # SeriesTime
+    (0x0008, 0x0032),  # AcquisitionTime
+    (0x0008, 0x0033),  # ContentTime
+    (0x0008, 0x0034),  # OverlayTime
+    (0x0008, 0x0035),  # CurveTime
+    (0x0038, 0x0015),  # AdmissionTime
+    (0x0038, 0x0021),  # DischargeTime
+]
+
+# Tags that may contain burned-in PHI (require OCR check)
+BURNED_IN_TAGS_TO_CLEAR: list[tuple[int, int]] = [
+    (0x0020, 0x4000),  # ImageComments
+    (0x0028, 0x4000),  # TextComments
+]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Utility Functions
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+def hash_value(value: str, salt: str = "radiology-ai-platform-v1") -> str:
+    """
+    Hash a value using SHA-256 + salt.
+
+    Returns 16-char hex string (sufficient for uniqueness in any reasonable dataset).
+    """
+    if not value:
+        return ""
+    return hashlib.sha256(f"{value}{salt}".encode("utf-8")).hexdigest()[:16]
+
+
+def shift_date(date_str: str, days: int) -> str:
+    """
+    Shift a DICOM date (YYYYMMDD) by N days.
+
+    Returns original string if parsing fails.
+    """
+    if not date_str or len(date_str) != 8:
+        return date_str
+    try:
+        dt = datetime.strptime(date_str, "%Y%m%d")
+        shifted = dt + timedelta(days=days)
+        return shifted.strftime("%Y%m%d")
+    except ValueError:
+        logger.warning(f"Could not parse date: {date_str}")
+        return date_str
+
+
+def shift_time(time_str: str, seconds: int) -> str:
+    """
+    Shift a DICOM time (HHMMSS.FFFFFF) by N seconds.
+
+    Returns original string if parsing fails.
+    """
+    if not time_str:
+        return time_str
+    try:
+        # Strip fractional part for simplicity
+        base = time_str.split(".")[0]
+        if len(base) < 6:
+            base = base.ljust(6, "0")
+        dt = datetime.strptime(base, "%H%M%S")
+        shifted = dt + timedelta(seconds=seconds)
+        return shifted.strftime("%H%M%S")
+    except ValueError:
+        return time_str
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Main De-identification Logic
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+def deidentify_dicom(
+    dcm_path: Path,
+    output_dir: Path,
+    date_shift_days: int = 0,
+    time_shift_seconds: int = 0,
+) -> dict[str, Any]:
+    """
+    De-identify a single DICOM file.
+
+    Args:
+        dcm_path: Path to input .dcm file
+        output_dir: Directory to write the de-identified file
+        date_shift_days: Days to shift dates (negative = past)
+        time_shift_seconds: Seconds to shift times
+
+    Returns:
+        Audit log entry with all actions taken
+    """
+    audit_log: dict[str, Any] = {
+        "original_file": str(dcm_path),
+        "modality": "Unknown",
+        "actions": [],
+        "errors": [],
+    }
+
+    try:
+        ds = pydicom.dcmread(str(dcm_path), stop_before_pixels=False)
+    except Exception as e:
+        audit_log["errors"].append(f"Failed to read DICOM: {e}")
+        return audit_log
+
+    audit_log["modality"] = getattr(ds, "Modality", "Unknown")
+
+    # ── Step 1: Remove direct identifiers ──
+    for tag in TAGS_TO_REMOVE:
+        if tag in ds:
+            try:
+                tag_name = ds[tag].name
+                del ds[tag]
+                audit_log["actions"].append(f"Removed {tag} ({tag_name})")
+            except Exception as e:
+                audit_log["errors"].append(f"Failed to remove {tag}: {e}")
+
+    # ── Step 2: Hash identifiers ──
+    for tag in TAGS_TO_HASH:
+        if tag in ds:
+            try:
+                element = ds[tag]
+                original = str(element.value)
+                if original:
+                    hashed = hash_value(original)
+                    element.value = hashed
+                    audit_log["actions"].append(
+                        f"Hashed {tag} ({element.name}): "
+                        f"{original[:8]}... → {hashed}"
+                    )
+            except Exception as e:
+                audit_log["errors"].append(f"Failed to hash {tag}: {e}")
+
+    # ── Step 3: Shift dates ──
+    if date_shift_days != 0:
+        for tag in TAGS_TO_SHIFT_DATE:
+            if tag in ds:
+                try:
+                    element = ds[tag]
+                    original = str(element.value)
+                    shifted = shift_date(original, date_shift_days)
+                    element.value = shifted
+                    audit_log["actions"].append(
+                        f"Shifted date {tag}: {original} → {shifted}"
+                    )
+                except Exception as e:
+                    audit_log["errors"].append(f"Failed to shift date {tag}: {e}")
+
+    # ── Step 4: Shift times ──
+    if time_shift_seconds != 0:
+        for tag in TAGS_TO_SHIFT_TIME:
+            if tag in ds:
+                try:
+                    element = ds[tag]
+                    original = str(element.value)
+                    shifted = shift_time(original, time_shift_seconds)
+                    element.value = shifted
+                    audit_log["actions"].append(
+                        f"Shifted time {tag}: {original} → {shifted}"
+                    )
+                except Exception as e:
+                    audit_log["errors"].append(f"Failed to shift time {tag}: {e}")
+
+    # ── Step 5: Clear burned-in annotation flags ──
+    # Set "Burned In Annotation" to "NO" (we'll trust this — actual OCR check is separate)
+    if (0x0028, 0x0301) in ds:
+        ds[0x0028, 0x0301].value = "NO"
+        audit_log["actions"].append("Set Burned In Annotation = NO")
+
+    for tag in BURNED_IN_TAGS_TO_CLEAR:
+        if tag in ds:
+            del ds[tag]
+            audit_log["actions"].append(f"Cleared burned-in text tag {tag}")
+
+    # ── Step 6: Update file meta for safe writing ──
+    if not hasattr(ds, "file_meta"):
+        ds.file_meta = pydicom.dataset.FileMetaDataset()
+
+    sop_class_uid = getattr(ds, "SOPClassUID", None)
+    sop_instance_uid = getattr(ds, "SOPInstanceUID", None)
+
+    if sop_class_uid:
+        ds.file_meta.MediaStorageSOPClassUID = sop_class_uid
+    if sop_instance_uid:
+        ds.file_meta.MediaStorageSOPInstanceUID = sop_instance_uid
+    ds.file_meta.TransferSyntaxUID = ExplicitVRLittleEndian
+
+    # Ensure necessary file meta elements
+    if "ImplementationClassUID" not in ds.file_meta:
+        ds.file_meta.ImplementationClassUID = "1.2.826.0.1.3680043.8.498.10"
+    if "ImplementationVersionName" not in ds.file_meta:
+        ds.file_meta.ImplementationVersionName = "RADAI_DEID_1"
+
+    # ── Step 7: Write the de-identified file ──
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_filename = f"{hash_value(str(dcm_path))}.dcm"
+    out_path = output_dir / output_filename
+
+    try:
+        ds.save_as(str(out_path), write_like_original=False)
+        audit_log["output_file"] = str(out_path)
+        audit_log["status"] = "success"
+    except Exception as e:
+        audit_log["errors"].append(f"Failed to save: {e}")
+        audit_log["status"] = "failed"
+
+    return audit_log
+
+
+def verify_deidentification(dcm_path: Path) -> dict[str, Any]:
+    """
+    Verify that a DICOM file has been properly de-identified.
+
+    Returns a report of any PHI tags that are still present.
+    """
+    report: dict[str, Any] = {
+        "file": str(dcm_path),
+        "phi_remaining": [],
+        "is_clean": True,
+    }
+
+    try:
+        ds = pydicom.dcmread(str(dcm_path))
+    except Exception as e:
+        report["error"] = f"Failed to read: {e}"
+        report["is_clean"] = False
+        return report
+
+    # Check tags that should be removed
+    for tag in TAGS_TO_REMOVE:
+        if tag in ds:
+            report["phi_remaining"].append(
+                {
+                    "tag": f"({tag[0]:04X}, {tag[1]:04X})",
+                    "name": ds[tag].name,
+                    "value_preview": str(ds[tag].value)[:50] + "...",
+                }
+            )
+
+    # Check for un-hashed PatientID
+    if (0x0010, 0x0020) in ds:
+        value = str(ds[0x0010, 0x0020].value)
+        # Hashed values are 16-char hex strings
+        if len(value) != 16 or not all(c in "0123456789abcdef" for c in value.lower()):
+            report["phi_remaining"].append(
+                {
+                    "tag": "(0010, 0020)",
+                    "name": "PatientID (not hashed)",
+                    "value_preview": value[:50] + "...",
+                }
+            )
+
+    report["is_clean"] = len(report["phi_remaining"]) == 0
+    return report
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CLI Entry Point
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="De-identify DICOM files (PS3.15 Annex E compliant)",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=__doc__,
+    )
+    parser.add_argument(
+        "--input", required=True, help="Input DICOM file or directory"
+    )
+    parser.add_argument(
+        "--output", required=True, help="Output directory for de-identified files"
+    )
+    parser.add_argument(
+        "--date-shift",
+        type=int,
+        default=-365,
+        help="Days to shift dates (default: -365, use 0 to keep)",
+    )
+    parser.add_argument(
+        "--time-shift",
+        type=int,
+        default=0,
+        help="Seconds to shift times (default: 0)",
+    )
+    parser.add_argument(
+        "--audit",
+        default="audit_log.json",
+        help="Audit log filename (in output dir)",
+    )
+    parser.add_argument(
+        "--verify",
+        action="store_true",
+        help="Run verification on output files (check no PHI remains)",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Process but don't write files (for testing)",
+    )
+
+    args = parser.parse_args()
+
+    input_path = Path(args.input)
+    output_dir = Path(args.output)
+
+    if not input_path.exists():
+        logger.error(f"Input not found: {input_path}")
+        sys.exit(1)
+
+    # Collect all .dcm files
+    if input_path.is_file():
+        dcm_files = [input_path]
+    else:
+        dcm_files = list(input_path.rglob("*.dcm")) + list(input_path.rglob("*.dicom"))
+
+    if not dcm_files:
+        logger.error(f"No DICOM files found in: {input_path}")
+        sys.exit(1)
+
+    logger.info(f"Found {len(dcm_files)} DICOM files to process")
+
+    # ── De-identify all files ──
+    all_logs: list[dict[str, Any]] = []
+    success_count = 0
+    failure_count = 0
+
+    for i, dcm_file in enumerate(dcm_files, 1):
+        logger.info(f"[{i}/{len(dcm_files)}] Processing: {dcm_file.name}")
+
+        if args.dry_run:
+            logger.info("  (dry-run, skipping)")
+            continue
+
+        log = deidentify_dicom(
+            dcm_file,
+            output_dir,
+            date_shift_days=args.date_shift,
+            time_shift_seconds=args.time_shift,
+        )
+        all_logs.append(log)
+
+        if log.get("status") == "success":
+            success_count += 1
+        else:
+            failure_count += 1
+
+        # Log any errors
+        for error in log.get("errors", []):
+            logger.warning(f"  ⚠ {error}")
+
+    # ── Save audit log ──
+    if not args.dry_run:
+        audit_path = output_dir / args.audit
+        audit_path.parent.mkdir(parents=True, exist_ok=True)
+        audit_path.write_text(
+            json.dumps(all_logs, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        logger.info(f"\nAudit log saved to: {audit_path}")
+
+    # ── Verification (optional) ──
+    if args.verify and not args.dry_run:
+        logger.info("\n── Verification ──")
+        verification_reports = []
+        clean_count = 0
+        for dcm_file in output_dir.glob("*.dcm"):
+            report = verify_deidentification(dcm_file)
+            verification_reports.append(report)
+            if report["is_clean"]:
+                clean_count += 1
+            else:
+                logger.warning(f"  ⚠ PHI remaining in: {dcm_file.name}")
+                for phi in report["phi_remaining"]:
+                    logger.warning(f"    - {phi['tag']} ({phi['name']})")
+
+        verify_path = output_dir / "verification_report.json"
+        verify_path.write_text(
+            json.dumps(verification_reports, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        logger.info(f"Verification: {clean_count}/{len(verification_reports)} files clean")
+
+    # ── Summary ──
+    logger.info("\n" + "=" * 60)
+    logger.info(f"De-identification complete")
+    logger.info(f"  Total files: {len(dcm_files)}")
+    logger.info(f"  Success:     {success_count}")
+    logger.info(f"  Failed:      {failure_count}")
+    logger.info(f"  Output dir:  {output_dir}")
+    logger.info("=" * 60)
+
+    if failure_count > 0:
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+---
+
+### `research/DATASETS.md`
+**اللغة:** Markdown | **الأسطر:** 470 | **الحجم:** 13,830 حرف
+
+```markdown
+# Datasets — Medical Imaging Datasets for Training
+
+> قائمة شاملة بالـ datasets العامة والبروتوكول المتبع للبيانات الخاصة
+
+---
+
+## 1. الـ Datasets العامة (Public)
+
+### 1.1 MIMIC-CXR
+
+**الموقع**: [physionet.org/content/mimic-cxr](https://physionet.org/content/mimic-cxr/2.0.0/)
+**الحجم**: 377,110 صورة + 227,835 تقرير
+**النوع**: X-ray صدر
+**اللغة**: إنجليزية
+**الترخيص**: PhysioNet Credentialed Health Data License
+
+#### المحتوى
+- 65,379 مريض فريد
+- 227,835 دراسة
+- 377,110 صورة (frontal + lateral)
+- تقارير سريرية حقيقية (radiologist-signed)
+
+#### الـ Labels (CheXpert labeler)
+14 مرض:
+1. Atelectasis
+2. Cardiomegaly
+3. Consolidation
+4. Edema
+5. Enlarged Cardiomediastinum
+6. Fracture
+7. Lung Lesion
+8. Lung Opacity
+9. No Finding
+10. Pleural Effusion
+11. Pleural Other
+12. Pneumonia
+13. Pneumothorax
+14. Support Devices
+
+#### الوصول
+1. إنشاء حساب على [PhysioNet](https://physionet.org/)
+2. إكمال **CITI Data or Specimens Only Research** training
+3. طلب الوصول لـ MIMIC-CXR v2.0.0
+4. انتظار الموافقة (1-2 أسبوع)
+5. تحميل البيانات عبر `wget` أو `gsutil`
+
+#### التكامل مع مشروعنا
+- **Pre-training** للنموذج (تعليم النموذج أنماط التقارير الإنجليزية)
+- **Evaluation** على test set بعد fine-tuning على بياناتنا
+- **Transfer learning** إلى بياناتنا العربية
+
+---
+
+### 1.2 CheXpert
+
+**الموقع**: [stanfordmlgroup.github.io/competitions/chexpert](https://stanfordmlgroup.github.io/competitions/chexpert/)
+**الحجم**: 224,316 صورة
+**النوع**: X-ray صدر
+**اللغة**: إنجليزية
+**الترخيص**: Stanford Research Use Agreement
+
+#### المحتوى
+- 65,240 مريض
+- 14 labels (نفس MIMIC-CXR)
+- تقسيم رسمي: train (191,229), validation (1,766), test (no labels)
+
+#### الاستخدام
+- **Pre-trained classifier** (vision encoder)
+- **Benchmark** للمقارنة
+- **CheXpert labeler** كأداة لتقييم التقارير
+
+---
+
+### 1.3 PadChest
+
+**الموقع**: [bimcv.cipf.es/bimcv-projects/padchest](https://bimcv.cipf.es/bimcv-projects/padchest/)
+**الحجم**: 160,868 صورة + 109,931 تقرير
+**النوع**: X-ray صدر
+**اللغة**: إسبانية
+**الترخيص**: Research Use
+
+#### المميزات الفريدة
+- ✅ التقارير بالإسبانية (لغة لاتينية، قريبة من العربية في التركيب)
+- ✅ 174 مختلف finding labels
+- ✅ تقارير موسّعة (8 جمل في المتوسط)
+
+#### الاستراتيجية للعربية
+- استخدام PadChest لـ pre-training على لغة لاتينية مختلفة
+- ثم fine-tune على بيانات عربية
+- "Bridge" بين الإنجليزية والعربية عبر الإسبانية
+
+---
+
+### 1.4 CT-RATE
+
+**الموقع**: [github.com/bowang-lab/CT-RATE](https://github.com/bowang-lab/CT-RATE)
+**الحجم**: 1,763 دراسة CT (3D)
+**النوع**: CT صدر
+**اللغة**: إنجليزية (findings فقط)
+**الترخيص**: CC BY-NC 4.0
+
+#### المحتوى
+- 1,763 دراسة CT للصدر (3D volumes)
+- 1,259 مريض فريد
+- 65 findings مختلفة
+- تقسيم رسمي: train (1,253), validation (297), test (213)
+
+#### الاستخدام
+- ✅ بيانات 3D (نادر في الـ datasets العامة)
+- ✅ مناسب لتدريب RadFM على CT
+
+---
+
+### 1.5 IU X-Ray (Open-I)
+
+**الموقع**: [openi.nlm.nih.gov](https://openi.nlm.nih.gov/)
+**الحجم**: 7,470 صورة + 3,955 تقرير
+**النوع**: X-ray متعدد
+**اللغة**: إنجليزية
+**الترخيص**: Open Access
+
+#### الاستخدام
+- ✅ Small dataset مناسب للـ prototyping
+- ✅ المعيار القياسي للـ benchmarks في الـ papers
+- ✅ سريع التحميل والتدريب
+
+---
+
+### 1.6 BraTS — Brain Tumor Segmentation
+
+**الموقع**: [braintumorsegmentation.org](https://www.med.upenn.edu/cbica/brats2023/)
+**الحجم**: ~1,250 دراسة MRI للدماغ
+**النوع**: MRI (4 modalities: T1, T1c, T2, FLAIR)
+**الترخيص**: Research Use
+
+#### الاستخدام
+- تدريب نماذج segmentation (وليس report generation)
+- ✅ مناسب للتوسع المستقبلي نحو brain MRI analysis
+
+---
+
+### 1.7 مجموعات أخرى مفيدة
+
+| Dataset | النوع | الحجم | الرابط |
+|---------|------|------|--------|
+| **NIH ChestX-ray14** | X-ray | 112,120 | [nihcc.app.box.com](https://nihcc.app.box.com/v/ChestXray-NIHCC) |
+| **VinDr-CXR** | X-ray | 18,000 | [github.com/vinbigdata-medical/vindr-cxr](https://github.com/vinbigdata-medical/vindr-cxr) |
+| **RSNA Pneumonia** | X-ray | 30,000 | [kaggle.com/c/rsna-pneumonia-detection-challenge](https://www.kaggle.com/c/rsna-pneumonia-detection-challenge) |
+| **COVID-19 Radiography** | X-ray | 21,165 | [kaggle.com/tawsifurrahman/covid19-radiography-database](https://www.kaggle.com/tawsifurrahman/covid19-radiography-database) |
+| **DeepLesion** | CT | 32,735 | [github.com/MASILab/DeepLesion](https://github.com/MASILab/DeepLesion) |
+| **MedMNIST** | Mixed | 708,069 | [medmnist.com](https://medmnist.com/) |
+
+---
+
+## 2. الـ Datasets الخاصة (Private — عبر المستشفى الشريك)
+
+### 2.1 البروتوكول
+
+```
+┌─────────────────────────────────────────────────────┐
+│ المستشفى الشريك (Hospital Partner)                  │
+│                                                      │
+│ 1. موافقة أخلاقية (IRB Approval)                    │
+│    ↓                                                 │
+│ 2. Data Sharing Agreement (DSA) موقّع                │
+│    ↓                                                 │
+│ 3. استخراج البيانات من PACS                          │
+│    (by hospital IT, NOT by us)                       │
+│    ↓                                                 │
+│ 4. De-identification داخل المستشفى                   │
+│    (using our scripts, run by hospital)              │
+│    ↓                                                 │
+│ 5. نقل آمن (SFTP or encrypted drive)                 │
+│    ↓                                                 │
+│ 6. استلام البيانات في بيئة آمنة                      │
+│    (air-gapped or dedicated cloud VPC)               │
+│    ↓                                                 │
+│ 7. تدقيق نهائي للـ de-identification                 │
+│    ↓                                                 │
+│ 8. بدء التدريب                                       │
+└─────────────────────────────────────────────────────┘
+```
+
+### 2.2 متطلبات الـ Datasets الخاصة
+
+#### الكمية (Volume)
+| المرحلة | الحد الأدنى | الموصى به |
+|--------|----------|----------|
+| Phase 2 (Prototype) | 500 زوج | 1,000+ زوج |
+| Phase 3 (Pilot) | 2,000 زوج | 5,000+ زوج |
+| Phase 4 (Production) | 10,000 زوج | 50,000+ زوج |
+
+#### التنوع (Diversity)
+- ✅ ≥3 modalities (CT, MRI, X-ray)
+- ✅ ≥5 body parts (Chest, Brain, Abdomen, MSK, Spine)
+- ✅ ≥3 أجهزة مختلفة (Siemens, GE, Philips)
+- ✅ ≥2 مستشفيات مختلفة (للـ federated learning)
+
+#### الجودة (Quality)
+- ✅ تقارير مُعتمدة من استشاري إشعاعي (وليس مقيم)
+- ✅ صور بدقة ≥512x512
+- ✅ لا توجد صور مكررة أو ناقصة
+- ✅ metadata كاملة (Modality, BodyPart, StudyDescription)
+
+---
+
+### 2.3 الـ IRB Approval (Institutional Review Board)
+
+#### ما هو IRB؟
+لجنة أخلاقية في المستشفى تُراجع أي بحث ي involves بيانات مرضى.
+
+#### الخطوات
+1. **تقديم بروتوكول البحث** (Research Protocol)
+   - الهدف من البحث
+   - البيانات المطلوبة
+   - تدابير حماية الخصوصية
+   - خطة النشر (هل سيتم نشر نتائج؟)
+2. **مراجعة IRB** (4-8 أسابيع)
+3. **الموافقة** أو **طلب تعديلات**
+4. **تجديد سنوي** (إن استمر البحث)
+
+#### النقاط الحرجة في البروتوكول
+- ✅ "ستُستخدم البيانات لتطوير نموذج ذكاء اصطناعي يُولّد تقارير إشعاعية مساعدة"
+- ✅ "ستُخفى هوية جميع البيانات قبل الاستخدام وفق DICOM PS3.15"
+- ✅ "لن تُنشر أي بيانات فردية — فقط نتائج مجمّعة"
+- ✅ "ستُخزّن البيانات في بيئة معزولة ومشفّرة"
+- ✅ "سيتم تدمير البيانات بعد انتهاء البحث (أو حسب اتفاقية)"
+
+---
+
+### 2.4 الـ Data Sharing Agreement (DSA)
+
+بنود أساسية:
+
+```
+1. الأطراف (المستشفى + الباحث)
+2. الغرض من استخدام البيانات
+3. حجم ونوع البيانات
+4. مدة الاحتفاظ بالبيانات
+5. الإجراءات الأمنية المطلوبة
+6. حقوق الملكية الفكرية للنماذج المُدرّبة
+7. حقوق النشر (publications)
+8. الإنهاء المبكر والاسترجاع
+9. المسؤولية القانونية
+10. القانون المُحكِّم (Saudi, UAE, etc.)
+```
+
+---
+
+## 3. Pre-processing Pipeline للبيانات الخاصة
+
+```python
+"""
+Pipeline مُقترح لمعالجة البيانات الخاصة قبل التدريب.
+"""
+
+import json
+import shutil
+from pathlib import Path
+
+import pydicom
+
+from scripts.dicom_deidentify import deidentify_dicom
+
+
+def preprocess_private_data(
+    input_dir: Path,
+    output_dir: Path,
+    reports_csv: Path,
+    audit_file: Path
+):
+    """
+    1. استقبال DICOM + reports CSV من المستشفى
+    2. De-identification لكل ملف DICOM
+    3. ربط التقارير بالصور عبر StudyInstanceUID
+    4. حفظ في هيكل train/val/test
+    """
+
+    # 1. قراءة التقارير
+    reports = {}
+    with open(reports_csv) as f:
+        for row in csv.DictReader(f):
+            study_uid = row["study_instance_uid"]
+            reports[hash_value(study_uid)] = {
+                "report_text": row["report"],
+                "modality": row["modality"],
+                "body_part": row["body_part"],
+            }
+
+    # 2. معالجة كل ملف DICOM
+    all_data = []
+    for dcm_file in input_dir.rglob("*.dcm"):
+        # De-identify
+        log = deidentify_dicom(dcm_file, output_dir / "images", date_shift=-365)
+        all_data.append(log)
+
+    # 3. ربط الصور بالتقارير
+    pairs = []
+    for entry in all_data:
+        study_hash = entry["study_hash"]
+        if study_hash in reports:
+            pairs.append({
+                "image_path": entry["output_file"],
+                "report": reports[study_hash]["report_text"],
+                "modality": reports[study_hash]["modality"],
+                "body_part": reports[study_hash]["body_part"],
+            })
+
+    # 4. تقسيم train/val/test (70/15/15)
+    import random
+    random.seed(42)
+    random.shuffle(pairs)
+
+    n = len(pairs)
+    train = pairs[: int(0.7 * n)]
+    val = pairs[int(0.7 * n) : int(0.85 * n)]
+    test = pairs[int(0.85 * n) :]
+
+    # 5. حفظ
+    for split, data in [("train", train), ("val", val), ("test", test)]:
+        out_file = output_dir / f"{split}.json"
+        out_file.write_text(json.dumps(data, indent=2, ensure_ascii=False))
+
+    # 6. Audit log
+    audit_file.write_text(json.dumps(all_data, indent=2, ensure_ascii=False))
+
+    print(f"✅ Processed {n} pairs: train={len(train)}, val={len(val)}, test={len(test)}")
+```
+
+---
+
+## 4. الـ Quality Control
+
+### 4.1 فحوصات تلقائية
+
+```python
+def quality_check(dataset_dir: Path) -> dict:
+    """فحص جودة الـ dataset قبل التدريب."""
+    report = {
+        "total_studies": 0,
+        "issues": [],
+        "stats": {
+            "modalities": {},
+            "body_parts": {},
+            "manufacturers": {},
+        }
+    }
+
+    for json_file in ["train.json", "val.json", "test.json"]:
+        data = json.loads((dataset_dir / json_file).read_text())
+        for item in data:
+            report["total_studies"] += 1
+
+            # تحقق من وجود الصورة
+            if not Path(item["image_path"]).exists():
+                report["issues"].append(f"Missing image: {item['image_path']}")
+                continue
+
+            # تحقق من DICOM
+            try:
+                ds = pydicom.dcmread(item["image_path"])
+                modality = getattr(ds, "Modality", "Unknown")
+                body_part = getattr(ds, "BodyPartExamined", "Unknown")
+                manufacturer = getattr(ds, "Manufacturer", "Unknown")
+
+                report["stats"]["modalities"][modality] = \
+                    report["stats"]["modalities"].get(modality, 0) + 1
+                report["stats"]["body_parts"][body_part] = \
+                    report["stats"]["body_parts"].get(body_part, 0) + 1
+                report["stats"]["manufacturers"][manufacturer] = \
+                    report["stats"]["manufacturers"].get(manufacturer, 0) + 1
+            except Exception as e:
+                report["issues"].append(f"DICOM read error: {e}")
+
+            # تحقق من التقرير
+            if len(item["report"]) < 50:
+                report["issues"].append(f"Short report: {item['image_path']}")
+
+    return report
+```
+
+### 4.2 فحوصات بشرية
+- عينة عشوائية (5%) يفحصها طبيب إشعاعي
+- التحقق من:
+  - مطابقة الصورة للتقرير
+  - عدم وجود بيانات شخصية متبقية
+  - جودة الصورة (لا تكون شديدة التشويش)
+
+---
+
+## 5. الـ Data Augmentation
+
+### 5.1 الآمن للصور الطبية
+
+| Transform | آمن؟ | ملاحظات |
+|-----------|------|--------|
+| Random Rotation (±10°) | ✅ | للـ X-ray (وليس CT/MRI) |
+| Random Flip (LR) | ⚠️ | فقط للـ chest (القلب على اليسار!) |
+| Random Flip (UD) | ❌ | غير طبيعي طبياً |
+| Random Crop | ✅ | مع الحفاظ على الـ center |
+| Random Zoom (0.9-1.1) | ✅ | لمحاكاة أجهزة مختلفة |
+| Intensity Shift | ✅ | صغير فقط (±0.1) |
+| Gaussian Noise | ✅ | لمحاكاة sensor noise |
+| Random Bias Field | ✅ | لـ MRI |
+| Elastic Deformation | ❌ | يغير التشريح |
+
+### 5.2 أمثلة (MONAI)
+
+```python
+from monai.transforms import (
+    Compose, RandRotate, RandZoom, RandShiftIntensity,
+    RandGaussianNoise, RandBiasField
+)
+
+safe_transforms = Compose([
+    RandRotate(range_x=0.17, prob=0.5),  # ±10°
+    RandZoom(min_zoom=0.9, max_zoom=1.1, prob=0.3),
+    RandShiftIntensity(offsets=0.1, prob=0.5),
+    RandGaussianNoise(prob=0.2, mean=0, std=0.01),
+])
+
+# لـ MRI فقط
+mri_transforms = Compose([
+    safe_transforms,
+    RandBiasField(prob=0.5),
+])
+```
+
+---
+
+## 6. الـ Bias والـ Fairness
+
+### 6.1 أنواع الـ Bias في الـ Medical AI
+
+| Bias | السبب | الحل |
+|------|------|-----|
+| **Selection Bias** | بيانات من مستشفى واحد فقط | متعدد المستشفيات |
+| **Demographic Bias** | عدم تنوع عمر/جنس/عرق | فحص الـ distribution |
+| **Equipment Bias** | أجهزة من شركة واحدة | متعدد الـ manufacturers |
+| **Label Bias** | تقارير بأسلوب طبيب واحد | متعدد الأطباء |
+| **Length Bias** | تقارير قصيرة جداً أو طويلة جداً | فلترة |
+
+### 6.2 Fairness Metrics
+
+لكل مجموعة (age, sex, etc.):
+- **Demographic Parity**: نسبة التقارير المُعتمدة متساوية عبر المجموعات
+- **Equal Opportunity**: نسبة الـ true positives متساوية
+- **Disparate Impact**: ratio < 0.8 يعني bias
+
+---
+
+## 7. الـ References
+
+### Datasets Catalogs
+- [PhysioNet](https://physionet.org/) — MIT-LCP
+- [The Cancer Imaging Archive (TCIA)](https://www.cancerimagingarchive.net/)
+- [Medical Imaging Datasets on GitHub](https://github.com/sfikas/medical-imaging-datasets)
+
+### Papers on Dataset Bias
+- "Fairness in Medical AI: A Review" (2024)
+- "Demographic Bias in Chest X-ray Datasets" (2023)
+
+### Tools
+- [MONAI Data Loading](https://docs.monai.io/en/stable/data.html)
+- [TorchIO Datasets](https://torchio.readthedocs.io/datasets.html)
+
+---
+
+> آخر تحديث: 2026-08-01
+
+```
+
+---
+
+### `research/MODELS_COMPARISON.md`
+**اللغة:** Markdown | **الأسطر:** 304 | **الحجم:** 8,687 حرف
+
+```markdown
+# Models Comparison — Vision-Language Models for Radiology
+
+> مقارنة شاملة للنماذج المتاحة لتوليد التقارير الإشعاعية
+
+---
+
+## 1. الـ Summary Table
+
+| Model | السنة | الحجم | VRAM | الـ Modalities | العربية | الـ License |
+|-------|------|------|------|---------------|--------|-----------|
+| **R2Gen** | 2020 | ~250MB | 8GB+ | X-ray | ❌ | Apache 2.0 |
+| **R2GenCMN** | 2022 | ~280MB | 8GB+ | X-ray | ❌ | Apache 2.0 |
+| **RadFM** | 2023 | ~14GB | 40GB+ | CT, MR, X-ray | ❌ | Apache 2.0 |
+| **Med-PaLM M** | 2023 | ~550B | متعدد GPUs | CT, MR, X-ray, Derm | ❌ | Closed |
+| **LLaVA-Med** | 2024 | ~13GB | 40GB+ | Multi-modal | ❌ | Apache 2.0 |
+| **CheXbert** | 2020 | ~440MB | 8GB+ | X-ray (classifier) | ❌ | MIT |
+| **Jais** | 2023 | 13B | 30GB+ | Text only | ✅ | Apache 2.0 |
+| **AceGPT** | 2023 | 13B | 30GB+ | Text only | ✅ | Apache 2.0 |
+
+---
+
+## 2. R2Gen — Recursive Neural Network for Report Generation
+
+**الورقة**: "Generating Radiology Reports via Memory-driven Large Language Model" (EMNLP 2020)
+**الموقع**: [github.com/cuhksz-iccv/R2Gen](https://github.com/cuhksz-iccv/R2Gen)
+**الترخيص**: Apache 2.0
+
+### المميزات
+- ✅ أبسط نموذج للبدء به
+- ✅ متطلبات GPU معقولة (V100 16GB)
+- ✅ كود training و inference جاهز
+- ✅ أداء جيد على X-ray الصدر
+- ✅ سريع في الـ inference (~1-3 ثوان لكل دراسة)
+
+### العيوب
+- ❌ يدعم X-ray فقط (لا CT أو MRI)
+- ❌ التقارير بالإنجليزية فقط
+- ❌ الـ architecture قديمة نسبياً (2020)
+- ❌ لا يدعم visual grounding
+
+### الأداء (على IU X-Ray dataset)
+| Metric | Score |
+|--------|-------|
+| BLEU-1 | 0.470 |
+| BLEU-2 | 0.304 |
+| BLEU-3 | 0.219 |
+| BLEU-4 | 0.165 |
+| CIDEr | 0.353 |
+| ROUGE-L | 0.371 |
+
+### الحجم والمتطلبات
+- **Model size**: ~250MB
+- **VRAM للتدريب**: 8GB (batch_size=8)
+- **VRAM لـ inference**: 4GB
+- **زمن التدريب**: ~12 ساعة على V100 (على IU X-Ray)
+
+### متى نستخدمه؟
+- ✅ Phase 2: النموذج الأولي الأول
+- ✅ عندما تكون البيانات X-ray فقط
+- ✅ عندما تكون موارد GPU محدودة
+
+---
+
+## 3. R2GenCMN — Cross-modal Memory Networks
+
+**الورقة**: "Cross-modal Memory Networks for Radiology Report Generation" (ACL 2022)
+**الموقع**: [github.com/cuhksz-iccv/R2GenCMN](https://github.com/cuhksz-iccv/R2GenCMN)
+
+### الفرق عن R2Gen
+- إضافة cross-modal memory
+- أداء أفضل قليلاً على BLEU-4 (+0.01)
+- حجم أكبر قليلاً (~280MB)
+
+### الأداء
+| Metric | R2Gen | R2GenCMN |
+|--------|-------|----------|
+| BLEU-4 | 0.165 | 0.176 |
+| CIDEr | 0.353 | 0.372 |
+
+### متى نستخدمه؟
+- بديل عن R2Gen إذا احتجنا دقة أعلى قليلاً
+- لا يزال يدعم X-ray فقط
+
+---
+
+## 4. RadFM — Radiology Foundation Model
+
+**الورقة**: "Radiology-Llama2: Best-in-Class Large Language Model for Radiology" (2023)
+**الموقع**: [github.com/BoyiLa/RadFM](https://github.com/BoyiLa/RadFM)
+**الترخيص**: Apache 2.0
+
+### المميزات
+- ✅ يدعم CT و MRI (وليس فقط X-ray)
+- ✅ قادر على الإجابة عن أسئلة طبية
+- ✅ Fine-tunable على بياناتنا
+- ✅ مبني على LLaMA-2 (قوي)
+
+### العيوب
+- ❌ حجم ضخم (~14GB)
+- ❌ يحتاج A100 40GB على الأقل للتدريب
+- ❌ الـ inference بطيء بدون GPU قوي
+- ❌ التقارير بالإنجليزية فقط
+- ❌ لا يدعم visual grounding مباشرة
+
+### المتطلبات
+- **GPU للتدريب**: 4x A100 40GB (أو 2x A100 80GB)
+- **VRAM لـ inference**: 40GB (أو 20GB مع 4-bit quantization)
+- **RAM**: 64GB+
+- **التخزين**: 100GB للنموذج + datasets
+
+### متى نستخدمه؟
+- ✅ Phase 3: عند الحاجة لدعم CT/MRI
+- ✅ عندما تكون موارد GPU متوفرة
+- ✅ بعد إثبات جدوى المشروع في Phase 2
+
+---
+
+## 5. LLaVA-Med
+
+**الورقة**: "LLaVA-Med: Training a Large Language-and-Vision Assistant for Biomedicine in One Day" (2024)
+**الموقع**: [github.com/microsoft/LLaVA-Med](https://github.com/microsoft/LLaVA-Med)
+**الترخيص**: Apache 2.0
+
+### المميزات
+- ✅ مبني على LLaVA (قاعدة قوية)
+- ✅ يدعم أنواع متعددة من الصور الطبية
+- ✅ يمكن تخصيصه للإشعاعية
+- ✅ Microsoft-supported
+
+### العيوب
+- ❌ ليس متخصصاً للإشعاع (general medical)
+- ❌ حجم كبير (~13GB)
+- ❌ الـ inference يحتاج GPU
+
+### متى نستخدمه؟
+- بديل عن RadFM إذا أردنا دعم أوسع (وليس فقط إشعاع)
+- مفيد للـ "second opinion" على نتائج متعددة
+
+---
+
+## 6. CheXbert — Report Labeling
+
+**الورقة**: "CheXbert: Automating Chest X-ray Interpretation with Deep Learning" (2020)
+**الموقع**: [github.com/stanfordmlgroup/chexpert-labeler](https://github.com/stanfordmlgroup/chexpert-labeler)
+
+### الوظيفة المختلفة
+CheXbert ليس مولّداً للتقارير — بل **مُصنّفاً**:
+- يأخذ تقريراً نصياً
+- يُرجع 14 labels ثنائية (Atelectasis, Cardiomegaly, Consolidation, Edema, ...)
+
+### الاستخدام في مشروعنا
+- **تقييم التقارير المُولّدة**: مقارنة labels من النص المُولّد مع labels من النص المرجعي
+- **مراقبة جودة النموذج**: إذا اختلف الـ labels كثيراً، النموذج يفشل
+- **تدريب RLHF**: الـ labels كـ reward signal
+
+### المميزات
+- ✅ سريع جداً (CPU كافٍ)
+- ✅ دقة عالية على التقارير الإنجليزية
+- ✅ مفيد للـ evaluation
+
+### العيوب
+- ❌ التقارير الإنجليزية فقط
+- ❌ يحتاج تعديل للعربية (أو translation pipeline)
+
+---
+
+## 7. النماذج العربية (Arabic LLMs)
+
+### Jais
+**الموقع**: [github.com/inceptionai/jais](https://github.com/inceptionai/jais)
+- 13B parameters
+- مُدرّب على نصوص عربية كثيرة
+- Apache 2.0
+- متاح على HuggingFace: `inceptionai/jais-13b`
+
+### AceGPT
+**الموقع**: [github.com/FreedomIntelligence/AceGPT](https://github.com/FreedomIntelligence/AceGPT)
+- 13B parameters (مبني على LLaMA-2)
+- مُحسّن للهجات الخليجية
+- Apache 2.0
+
+### الاستراتيجية المقترحة
+1. **Phase 1-3**: استخدام R2Gen/RadFM بالإنجليزية
+2. **Phase 4**: 
+   - توليد التقرير بالإنجليزية
+   - ترجمة عالية الجودة إلى العربية (بواسطة طبيب)
+   - Fine-tune Jais على أزواج (إنجليزي، عربي)
+3. **Phase 5** (مستقبلي): تدريب نموذج vision-language عربي من الصفر
+
+---
+
+## 8. Hardware Requirements Summary
+
+### Minimum (Development)
+```
+GPU: NVIDIA RTX 3090 (24GB) — $1500
+RAM: 64GB DDR4 — $200
+Storage: 2TB NVMe — $200
+Total: ~$1900
+```
+
+### Recommended (Phase 2 — Training R2Gen)
+```
+GPU: NVIDIA A100 40GB — $10,000 (or rent on AWS: $3/hour)
+RAM: 128GB DDR4 — $400
+Storage: 4TB NVMe — $400
+Total: ~$10,800 (or $3/hour cloud)
+```
+
+### Production (Phase 3+ — RadFM)
+```
+GPU: 2x NVIDIA A100 80GB — $40,000
+RAM: 256GB DDR5 — $1000
+Storage: 10TB NVMe + 50TB HDD — $1500
+Total: ~$42,500
+```
+
+### Cloud Alternatives
+| Provider | GPU | Price/hour |
+|----------|-----|-----------|
+| AWS p4d.24xlarge | 8x A100 40GB | $32.77 |
+| AWS p3.2xlarge | 1x V100 16GB | $3.06 |
+| GCP a2-highgpu-1g | 1x A100 40GB | $3.67 |
+| Azure NDm A100 v4 | 1x A100 80GB | $3.40 |
+| RunPod A100 80GB | 1x A100 80GB | $1.89 |
+| Lambda Labs A100 | 1x A100 40GB | $1.29 |
+
+---
+
+## 9. Evaluation Metrics
+
+### NLG Metrics (Natural Language Generation)
+
+| Metric | الوصف | الجيد |
+|--------|------|------|
+| **BLEU-1** | unigram precision | >0.40 |
+| **BLEU-4** | 4-gram precision with brevity penalty | >0.15 |
+| **CIDEr** | Consensus-based image description evaluation | >0.30 |
+| **ROUGE-L** | Longest common subsequence | >0.30 |
+| **METEOR** | F-score with synonyms | >0.20 |
+
+### Clinical Metrics
+
+| Metric | الوصف | الجيد |
+|--------|------|------|
+| **CheXbert F1** | F1 على 14 labels | >0.85 |
+| **CE (Clinical Efficacy)** | Micro/Macro F1 | >0.80 |
+| **BERTScore** | Semantic similarity | >0.85 |
+| **Green Score** | Semantic + clinical (recent) | >0.70 |
+
+### Human Evaluation
+
+| المعيار | السؤال |
+|--------|------|
+| **Fluency** | "هل التقرير مكتوب بشكل سليم؟" (1-5) |
+| **Correctness** | "هل النتائج دقيقة؟" (1-5) |
+| **Completeness** | "هل التقرير شامل؟" (1-5) |
+| **Usefulness** | "هل يفيد الطبيب سريرياً؟" (1-5) |
+
+---
+
+## 10. القرارات النهائية
+
+### Phase 2 (Q1 2027)
+- ✅ **R2Gen** كنموذج أولي
+- ✅ **CheXbert** للـ evaluation
+
+### Phase 3 (Q2 2027)
+- ✅ **RadFM** كنموذج رئيسي (مع fine-tuning)
+- ✅ **CheXbert** للـ continuous evaluation
+
+### Phase 4 (Q3-Q4 2027)
+- ✅ **Jais** أو **AceGPT** للنصوص العربية
+- ✅ **Pipeline**: RadFM (English) → Translate → Jais (polish Arabic)
+
+### Phase 5 (مستقبلي)
+- ✅ تدريب نموذج vision-language عربي من الصفر
+- ✅ يعتمد على نجاح Phase 4 + توفّر بيانات عربية كافية
+
+---
+
+## 11. الـ References
+
+### Papers
+1. R2Gen: [arxiv.org/abs/2006.11313](https://arxiv.org/abs/2006.11313)
+2. R2GenCMN: [arxiv.org/abs/2204.10108](https://arxiv.org/abs/2204.10108)
+3. RadFM: [arxiv.org/abs/2308.02463](https://arxiv.org/abs/2308.02463)
+4. LLaVA-Med: [arxiv.org/abs/2306.00890](https://arxiv.org/abs/2306.00890)
+5. CheXbert: [arxiv.org/abs/2004.12223](https://arxiv.org/abs/2004.12223)
+6. Jais: [arxiv.org/abs/2308.09288](https://arxiv.org/abs/2308.09288)
+
+### Surveys
+- "A Survey of Deep Learning-Based Radiology Report Generation" (2024)
+- "Vision-Language Models in Medical Imaging: A Comprehensive Survey" (2024)
+
+### Benchmarks
+- [IU X-Ray](https://openi.nlm.nih.gov/) — 7,470 images + 3,955 reports
+- [MIMIC-CXR](https://physionet.org/content/mimic-cxr/) — 377,110 images + 227,835 reports
+- [CheXpert](https://stanfordmlgroup.github.io/competitions/chexpert/) — 224,316 images
+
+---
+
+> آخر تحديث: 2026-08-01
+
+```
+
+---
+
+### `docs/ADR.md`
+**اللغة:** Markdown | **الأسطر:** 399 | **الحجم:** 11,631 حرف
+
+```markdown
+# Architecture Decision Records (ADR) — Radiology AI Platform
+
+> قرارات معمارية مُلزمة — تم الاتفاق عليها في 2026-08-01 بين د. عبد المالك و Z.ai
+
+---
+
+## النظرة العامة
+
+هذا المستند يُوثّق القرارات المعمارية الأساسية للمنصة. أي تنفيذ مستقبلي يجب أن يلتزم بهذه القرارات. تغيير أي قرار يتطلب:
+1. مراجعة هذا الملف
+2. إضافة ADR جديد يُلغي القديم مع تبرير
+3. تحديث الـ dependencies في `setup/requirements.txt`
+
+---
+
+## ADR-001: قاعدة البيانات — asyncpg (Async PostgreSQL)
+
+**الحالة**: ✅ مقبول
+**التاريخ**: 2026-08-01
+
+### السياق
+نحتاج قاعدة بيانات لتخزين:
+- دراسات DICOM + الـ metadata
+- التقارير المُولّدة + المُراجَعة
+- الـ audit logs
+- بيانات المستخدمين
+
+الخيارات المتاحة:
+- `psycopg2` (sync) — المعيار التقليدي
+- `asyncpg` (async) — حديث وسريع
+- `SQLModel` (sync wrapper) — أبسط لكنه أقل نضجاً
+
+### القرار
+**استخدام `asyncpg` مع SQLAlchemy 2.0 async mode.**
+
+```python
+# settings.py
+DATABASE_URL = "postgresql+asyncpg://user:pass@localhost/db"
+engine = create_async_engine(DATABASE_URL, pool_size=20, max_overflow=10)
+AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False)
+```
+
+### التبرير
+1. **FastAPI يعمل بشكل أفضل مع async** — لا يحتاج لـ thread pool
+2. **DICOM upload + AI inference يستغرقان وقتاً** — sync سيُعلق الـ API
+3. **asyncpg أسرع 2-3x من psycopg2** في benchmarks الرسمية
+4. **SQLAlchemy 2.0 يدعم async بشكل كامل** عبر `create_async_engine`
+5. **التوافق مع باقي الـ stack** (Redis async, MinIO async, etc.)
+
+### العواقب
+- ✅ أداء أعلى تحت الحمل
+- ✅ استجابة الـ API أسرع
+- ⚠️ يتطلب `async/await` في كل الـ data layer
+- ⚠️ بعض الـ libraries القديمة قد لا تدعم async (نستبدلها)
+
+### الـ dependencies
+```
+asyncpg==0.30.0
+sqlalchemy[asyncio]==2.0.36
+```
+
+---
+
+## ADR-002: Job Queue — Celery + Redis + Flower
+
+**الحالة**: ✅ مقبول
+**التاريخ**: 2026-08-01
+
+### السياق
+نحتاج نظام مهام خلفية لـ:
+- توليد التقارير بالـ AI (5-30 ثانية لكل تقرير)
+- معالجة DICOM (de-identification + indexing)
+- تدريب النماذج (ساعات)
+- تنظيف دوري (purge old temp files)
+
+الخيارات المتاحة:
+- `FastAPI BackgroundTasks` — مدمج لكنه بسيط
+- `RQ` (Redis Queue) — أبسط من Celery
+- `Celery` — معيار الصناعة
+- `Temporal` — حديث لكنه معقّد
+
+### القرار
+**استخدام Celery + Redis كـ broker + Flower للمراقبة.**
+
+```python
+# inference_worker.py
+from celery import Celery
+
+app = Celery("radiology_ai", broker="redis://localhost:6379/0")
+
+@app.task(bind=True, max_retries=3, default_retry_delay=60)
+def generate_report(self, study_id: str, model: str = "r2gen-v1.2"):
+    try:
+        # ... inference logic ...
+        return {"report_id": report.id, "status": "generated"}
+    except ModelLoadError as exc:
+        # Don't retry on model errors
+        raise
+    except (TimeoutError, ConnectionError) as exc:
+        # Retry on transient errors
+        raise self.retry(exc=exc, countdown=60)
+    except Exception as exc:
+        # Generic retry
+        raise self.retry(exc=exc, countdown=60 * self.request.retries)
+```
+
+### التبرير
+1. **BackgroundTasks يعمل فقط أثناء الـ request** — إذا سقط الـ server تُفقد المهمة
+2. **RQ أبسط لكنه لا يدعم** scheduling + monitoring مثل Celery
+3. **Celery يدعم**:
+   - **Retry logic** (مهم للـ AI inference — GPU قد يكون مشغولاً)
+   - **Monitoring** (Flower dashboard — `http://localhost:5555`)
+   - **Scheduling** (periodic tasks للـ cleanup, audit log rotation)
+   - **Multiple workers** (GPU worker منفصل عن API worker)
+   - **Task priorities** (تقرير طارئ يسبق تنظيفاً دورياً)
+
+### العواقب
+- ✅ موثوقية عالية — المهام لا تُفقد
+- ✅ قابل للتوسع (cluster of workers)
+- ✅ مراقبة ممتازة عبر Flower
+- ⚠️ تعقيد تشغيلي أكبر (Redis + Celery worker + Flower)
+- ⚠️ debugging أصعب من الـ sync
+
+### الـ dependencies
+```
+celery==5.4.0
+redis==5.2.0
+flower==2.0.1
+```
+
+### البنية
+```
+┌─────────────────┐     ┌─────────┐     ┌──────────────────┐
+│   FastAPI       │────►│  Redis  │◄────│  Celery Worker   │
+│   (producer)    │     │ (broker)│     │  (consumer)      │
+└─────────────────┘     └────┬────┘     └──────────────────┘
+                             │
+                             ▼
+                        ┌─────────┐
+                        │ Flower  │ (monitoring)
+                        └─────────┘
+```
+
+### الـ Queues المقترحة
+| Queue | الأولوية | الـ workers |
+|-------|---------|------------|
+| `default` | متوسطة | 2 (CPU) |
+| `inference` | عالية | 1 (GPU) |
+| `training` | منخفضة | 1 (GPU dedicated) |
+| `cleanup` | منخفضة جداً | 1 (CPU) |
+
+---
+
+## ADR-003: Migrations — Alembic + SQLAlchemy 2.0
+
+**الحالة**: ✅ مقبول
+**التاريخ**: 2026-08-01
+
+### السياق
+نحتاج نظام migrations لإدارة تطور schema قاعدة البيانات.
+
+الخيارات المتاحة:
+- `Alembic` — المعيار الصناعي
+- `SQLModel` (يولّد schema تلقائياً)
+- `Django migrations` — ليس لنا (لسنا Django)
+- `Hand-written SQL` — بدائي
+
+### القرار
+**استخدام Alembic + SQLAlchemy 2.0 declarative models (ليس SQLModel).**
+
+```bash
+# الإعداد
+alembic init migrations
+
+# توليد migration من الـ models
+alembic revision --autogenerate -m "add studies table"
+
+# تطبيق
+alembic upgrade head
+
+# rollback
+alembic downgrade -1
+```
+
+```python
+# models/study.py
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+
+class Base(DeclarativeBase):
+    pass
+
+class Study(Base):
+    __tablename__ = "studies"
+    id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid4)
+    patient_pseudo_id: Mapped[str] = mapped_column(String(64))
+    modality: Mapped[str] = mapped_column(String(16))
+    # ...
+```
+
+### التبرير
+1. **SQLModel مبني على SQLAlchemy لكنه أقل نضجاً** — bugs متكررة في الإنتاج (خاصة مع الـ async)
+2. **Alembic هو المعيار الصناعي للـ migrations** — يدعم:
+   - **Auto-generation** من SQLAlchemy models
+   - **Branching + merging** للـ migrations المتوازية
+   - **Rollback آمن** (downgrade)
+   - **Offline mode** (توليد SQL بدون اتصال بالـ DB)
+3. **SQLAlchemy 2.0 أحدث وأكثر استقراراً** من SQLModel
+4. **التوافق مع asyncpg** (ADR-001) — كلاهما يدعم async
+
+### العواقب
+- ✅ migrations مُنظّمة وقابلة للمراجعة
+- ✅ rollback آمن عند الأخطاء
+- ✅ team collaboration (كل developer يُنشئ migration منفصل)
+- ⚠️ يجب توليد migration عند كل تغيير في الـ models
+- ⚠️ SQLModel أبسط في الكتابة لكن يُكلّفنا في الصيانة
+
+### الـ dependencies
+```
+alembic==1.14.0
+sqlalchemy[asyncio]==2.0.36
+```
+
+### قواعد الـ migrations
+1. **كل PR يُغيّر الـ schema يجب أن يحتوي migration**
+2. **لا تعدّل migration قديم** — أنشئ جديداً للتصحيح
+3. **اختبر migration على بيانات وهمية قبل الإنتاج**
+4. **Backup قاعدة البيانات قبل كل migration في الإنتاج**
+
+---
+
+## ADR-004: المصادقة — JWT Short-Lived + Refresh Tokens
+
+**الحالة**: ✅ مقبول
+**التاريخ**: 2026-08-01
+
+### السياق
+نحتاج نظام مصادقة للـ API. المستخدمون:
+- أطباء إشعاعيون (يستخدمون الـ web UI لساعات طويلة)
+- فنيون (يرفعون DICOM)
+- admins (يديرون النظام)
+
+الخيارات المتاحة:
+- **Session-based** (cookies + DB) — تقليدي
+- **JWT short-lived only** (15 دقيقة، إعادة login متكرر)
+- **JWT + Refresh tokens** — hybrid
+- **OAuth2 فقط** (Keycloak) — معقّد للـ MVP
+
+### القرار
+**استخدام JWT hybrid: Access Token قصير (15 دقيقة) + Refresh Token طويل (7 أيام).**
+
+```python
+# settings.py
+ACCESS_TOKEN_EXPIRE_MINUTES = 15
+REFRESH_TOKEN_EXPIRE_DAYS = 7
+JWT_ALGORITHM = "HS256"  # upgrade to RS256 in production
+JWT_ISSUER = "radiology-ai-platform"
+JWT_AUDIENCE = "radiology-clients"
+```
+
+### التبرير
+1. **Access token قصير** يُقلل الـ damage إذا سُرق (15 دقيقة فقط)
+2. **Refresh token طويل** لا يُجبر الطبيب على re-login كل 15 دقيقة (UX جيد)
+3. **Refresh token يُخزّن في `httpOnly` cookie** — مقاوم لـ XSS
+4. **Access token في `Authorization: Bearer` header** — مرن
+5. **Revocation list للـ refresh tokens** — إذا سُرق الجهاز، يمكن إلغاء الجلسة
+
+### التنفيذ
+
+#### Login Flow
+```
+┌──────────┐         ┌──────────┐         ┌──────────┐
+│  Client  │────────►│   API    │────────►│   DB     │
+│          │  POST   │          │  verify │          │
+│          │  /login │          │  pwd    │          │
+│          │◄────────│          │◄────────│          │
+│          │         │          │         │          │
+│          │ Set:    │          │         │          │
+│          │ refresh │          │         │          │
+│          │ cookie  │          │         │          │
+│          │ (7d)    │          │         │          │
+│          │         │          │         │          │
+│          │ Return: │          │         │          │
+│          │ access  │          │         │          │
+│          │ token   │          │         │          │
+│          │ (15m)   │          │         │          │
+└──────────┘         └──────────┘         └──────────┘
+```
+
+#### Token Refresh Flow
+```
+Client sends request with expired access token (401)
+   ↓
+Client calls POST /auth/refresh with refresh cookie
+   ↓
+API verifies refresh token signature + expiry + revocation list
+   ↓
+API issues NEW access token (15 min) + NEW refresh token (7d, rotated)
+   ↓
+Old refresh token is invalidated (rotation prevents replay)
+```
+
+#### Logout Flow
+```
+Client calls POST /auth/logout
+   ↓
+API adds refresh token to revocation list (Redis TTL: 7 days)
+   ↓
+API clears refresh cookie
+   ↓
+Client discards access token (will expire in ≤15 min)
+```
+
+### Token Payload
+
+```json
+{
+  "sub": "550e8400-e29b-41d4-a716-446655440000",  // user ID
+  "email": "dr.saleh@hospital.com",
+  "role": "radiologist",
+  "permissions": ["studies:read", "reports:write", "reports:approve"],
+  "iat": 1722500000,
+  "exp": 1722500900,  // +15 min
+  "iss": "radiology-ai-platform",
+  "aud": "radiology-clients",
+  "jti": "unique-token-id-for-logging"
+}
+```
+
+### Refresh Token Storage
+
+| المكان | التفاصيل |
+|--------|---------|
+| **Client (cookie)** | `httpOnly`, `Secure`, `SameSite=Strict`, `Path=/auth/refresh` |
+| **Server (Redis)** | `refresh_token:{jti}` → `{user_id, issued_at, last_used}` with TTL=7d |
+| **Revocation list** | `revoked_refresh:{jti}` with TTL = remaining validity |
+
+### العواقب
+- ✅ أمان عالٍ — access token قصير يحد من الخطر
+- ✅ UX جيد — refresh تلقائي عبر cookie
+- ✅ Revocation ممكن — خلال ثوانٍ من اكتشاف السرقة
+- ⚠️ تعقيد أعلى من session-based
+- ⚠️ Redis مطلوب للـ revocation list
+- ⚠️ Token rotation يتطلب تنسيق دقيق (race conditions عند الـ concurrent refresh)
+
+### الـ dependencies
+```
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+pyotp==2.9.0  # for MFA
+```
+
+### MFA (Multi-Factor Authentication) — للـ Admins و Radiologists
+- **TOTP** عبر `pyotp` (مثل Google Authenticator)
+- **إجباري** للـ admin و radiologist roles
+- **اختياري** للـ technician و viewer
+
+### الترقية المستقبلية (Phase 4 — Production)
+1. **الانتقال من HS256 → RS256** (asymmetric keys — أفضل للأمان)
+2. **Key rotation** تلقائي كل 90 يوماً
+3. **Token introspection endpoint** (للـ revocation الفورية)
+4. **Integration مع Keycloak** لو احتجنا SSO مع المستشفيات
+
+---
+
+## ملخص القرارات (Cheat Sheet)
+
+```
+التقنيات المختارة:
+
+1. Database: asyncpg (PostgreSQL async via SQLAlchemy 2.0)
+2. Job Queue: Celery + Redis + Flower (monitoring)
+3. Migrations: Alembic + SQLAlchemy 2.0 (no SQLModel)
+4. Auth: JWT short-lived (15min access) + refresh tokens (7 days, httpOnly cookie)
+```
+
+---
+
+## القرارات المعلّقة (Pending ADRs)
+
+- [ ] ADR-005: Orthanc vs dcm4che للـ PACS server
+- [ ] ADR-006: Milvus vs Weaviate vs Qdrant للـ Vector DB
+- [ ] ADR-007: Flower vs NVFlare للـ Federated Learning
+- [ ] ADR-008: نموذج عربي Fine-tuned vs Translation pipeline
+- [ ] ADR-009: On-Premise vs Cloud vs Hybrid للنشر
+- [ ] ADR-010: FHIR R4 vs FHIR R5 للـ export
+
+---
+
+## قواعد مراجعة القرارات
+
+1. **كل قرار يُراجع بعد 6 أشهر** من الإطلاق — قد تتغير الظروف
+2. **أي قرار يُلغى يتطلب ADR جديد** يُبرّر الإلغاء
+3. **القرارات تُخزّن في `docs/adr/`** كملفات منفصلة (مستقبلاً)
+4. **الـ commits تغيّر القرار يجب أن تشير للـ ADR** في الـ message
+
+---
+
+> آخر تحديث: 2026-08-01 — المؤلف: د. عبد المالك بالتعاون مع Z.ai
+
+```
+
+---
+
+### `docs/API_SPEC.md`
+**اللغة:** Markdown | **الأسطر:** 655 | **الحجم:** 13,772 حرف
+
+```markdown
+# API Specification — Radiology AI Platform
+
+> مواصفات REST API الكاملة للمنصة
+
+---
+
+## 1. النظرة العامة
+
+### الـ Base URL
+```
+Production:  https://api.radiology-ai.example.com/api/v1
+Staging:     https://staging-api.radiology-ai.example.com/api/v1
+Development: http://localhost:8000/api/v1
+```
+
+### المصادقة
+- **Scheme**: Bearer Token (JWT)
+- **Header**: `Authorization: Bearer <access_token>`
+- **Access token lifetime**: 15 minutes
+- **Refresh token lifetime**: 24 hours
+
+### الـ Content Types
+- **Requests**: `application/json` (default), `multipart/form-data` (uploads)
+- **Responses**: `application/json`
+- **Errors**: `application/problem+json` (RFC 7807)
+
+---
+
+## 2. الـ Endpoints
+
+### 2.1 المصادقة (Authentication)
+
+#### POST /auth/login
+```http
+POST /api/v1/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "radiologist@hospital.com",
+  "password": "secure_password_here"
+}
+```
+
+**Response 200**:
+```json
+{
+  "access_token": "eyJ0eXAiOiJKV1QiLCJhbGc...",
+  "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGc...",
+  "token_type": "bearer",
+  "expires_in": 900,
+  "user": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "email": "radiologist@hospital.com",
+    "role": "radiologist",
+    "name": "Dr. Al-Saleh"
+  }
+}
+```
+
+#### POST /auth/refresh
+```http
+POST /api/v1/auth/refresh HTTP/1.1
+Content-Type: application/json
+
+{
+  "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGc..."
+}
+```
+
+#### POST /auth/logout
+```http
+POST /api/v1/auth/logout HTTP/1.1
+Authorization: Bearer <access_token>
+```
+
+#### POST /auth/mfa/verify
+```http
+POST /api/v1/auth/mfa/verify HTTP/1.1
+Content-Type: application/json
+
+{
+  "mfa_token": "123456",
+  "session_token": "temp_session_token_from_login"
+}
+```
+
+---
+
+### 2.2 الدراسات (Studies)
+
+#### POST /studies
+رفع دراسة DICOM جديدة (ملف واحد أو ZIP).
+
+```http
+POST /api/v1/studies HTTP/1.1
+Authorization: Bearer <token>
+Content-Type: multipart/form-data
+
+------boundary
+Content-Disposition: form-data; name="file"; filename="study.zip"
+Content-Type: application/zip
+
+(binary data)
+------boundary--
+```
+
+**Response 202** (Accepted):
+```json
+{
+  "study_id": "abc123-def456",
+  "status": "processing",
+  "estimated_time_seconds": 30,
+  "poll_url": "/api/v1/studies/abc123-def456/status"
+}
+```
+
+#### GET /studies
+قائمة الدراسات مع pagination وfilters.
+
+```http
+GET /api/v1/studies?modality=CT&date_from=2026-01-01&page=1&per_page=20 HTTP/1.1
+Authorization: Bearer <token>
+```
+
+**Query Parameters**:
+| Parameter | Type | الوصف |
+|-----------|------|------|
+| `modality` | string | CT, MR, CR, DX, US, etc. |
+| `date_from` | date | YYYY-MM-DD |
+| `date_to` | date | YYYY-MM-DD |
+| `patient_pseudo_id` | string |hashed patient ID |
+| `status` | string | processing, ready, archived |
+| `page` | int | default: 1 |
+| `per_page` | int | default: 20, max: 100 |
+
+**Response 200**:
+```json
+{
+  "data": [
+    {
+      "id": "abc123-def456",
+      "modality": "CT",
+      "study_date": "2026-07-15",
+      "body_part": "Chest",
+      "study_description": "CT Chest with contrast",
+      "images_count": 250,
+      "status": "ready",
+      "created_at": "2026-07-15T10:30:00Z"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "per_page": 20,
+    "total": 145,
+    "total_pages": 8
+  }
+}
+```
+
+#### GET /studies/{study_id}
+تفاصيل دراسة واحدة.
+
+```http
+GET /api/v1/studies/abc123-def456 HTTP/1.1
+Authorization: Bearer <token>
+```
+
+**Response 200**:
+```json
+{
+  "id": "abc123-def456",
+  "modality": "CT",
+  "study_date": "2026-07-15",
+  "body_part": "Chest",
+  "study_description": "CT Chest with contrast",
+  "patient": {
+    "pseudo_id": "a1b2c3d4e5f67890",
+    "age": 45,
+    "sex": "M"
+  },
+  "series": [
+    {
+      "id": "series-001",
+      "number": 1,
+      "description": "Axial 5mm",
+      "images_count": 80,
+      "rows": 512,
+      "columns": 512,
+      "pixel_spacing": [0.5, 0.5],
+      "slice_thickness": 5.0
+    }
+  ],
+  "reports": [
+    {
+      "id": "report-001",
+      "status": "approved",
+      "created_at": "2026-07-15T11:00:00Z"
+    }
+  ]
+}
+```
+
+#### GET /studies/{study_id}/status
+حالة معالجة الدراسة.
+
+**Response 200**:
+```json
+{
+  "study_id": "abc123-def456",
+  "status": "ready",
+  "progress": 100,
+  "stages": [
+    {"name": "upload", "status": "completed", "duration_ms": 1200},
+    {"name": "validation", "status": "completed", "duration_ms": 350},
+    {"name": "deidentification", "status": "completed", "duration_ms": 2100},
+    {"name": "storage", "status": "completed", "duration_ms": 850}
+  ]
+}
+```
+
+#### DELETE /studies/{study_id}
+حذف دراسة (soft delete + audit log).
+
+```http
+DELETE /api/v1/studies/abc123-def456 HTTP/1.1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "reason": "duplicate_upload"
+}
+```
+
+---
+
+### 2.3 الصور (Images)
+
+#### GET /studies/{study_id}/images
+قائمة الصور في دراسة.
+
+#### GET /studies/{study_id}/images/{image_id}
+metadata صورة واحدة.
+
+#### GET /studies/{study_id}/images/{image_id}/pixel
+بيانات البكسل (PNG or JPEG).
+
+```http
+GET /api/v1/studies/abc123-def456/images/img-001/pixel?format=png&window=lung HTTP/1.1
+Authorization: Bearer <token>
+Accept: image/png
+```
+
+**Query Parameters**:
+| Parameter | Options |
+|-----------|---------|
+| `format` | `png`, `jpeg`, `dicom` |
+| `window` | `brain`, `lung`, `bone`, `soft_tissue`, `mediastinum`, `custom` |
+| `window_center` | int (if window=custom) |
+| `window_width` | int (if window=custom) |
+| `quality` | int (1-100, default: 90 for jpeg) |
+
+---
+
+### 2.4 التقارير (Reports)
+
+#### POST /studies/{study_id}/reports/generate
+توليد تقرير بالـ AI.
+
+```http
+POST /api/v1/studies/abc123-def456/reports/generate HTTP/1.1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "model": "r2gen-v1.2",
+  "language": "ar",
+  "include_visual_grounding": true
+}
+```
+
+**Response 202**:
+```json
+{
+  "report_id": "report-001",
+  "status": "generating",
+  "estimated_time_seconds": 5,
+  "poll_url": "/api/v1/reports/report-001"
+}
+```
+
+#### GET /reports/{report_id}
+تفاصيل تقرير.
+
+```http
+GET /api/v1/reports/report-001 HTTP/1.1
+Authorization: Bearer <token>
+```
+
+**Response 200**:
+```json
+{
+  "id": "report-001",
+  "study_id": "abc123-def456",
+  "status": "pending_review",
+  "report_type": "generated",
+  "model": {
+    "name": "r2gen",
+    "version": "v1.2"
+  },
+  "content": {
+    "examination": "CT Brain without contrast",
+    "clinical_indication": "Headache",
+    "technique": "Axial 5mm slices",
+    "findings": "The brain demonstrates normal parenchymal attenuation...",
+    "impression": "No acute intracranial abnormality"
+  },
+  "content_ar": {
+    "examination": "تصوير مقطعي للدماغ بدون صبغة",
+    "clinical_indication": "صداع",
+    "technique": "شرائح محورية بسماكة 5 مم",
+    "findings": "يُظهر الدماغ كثافة طبيعية...",
+    "impression": "لا يوجد اعتلال داخل القحف حاد"
+  },
+  "confidence_scores": {
+    "examination": 0.98,
+    "clinical_indication": 0.95,
+    "technique": 0.92,
+    "findings": [
+      {"text": "The brain demonstrates...", "score": 0.91},
+      {"text": "No acute hemorrhage...", "score": 0.87},
+      {"text": "The ventricular system...", "score": 0.94}
+    ],
+    "impression": 0.89
+  },
+  "visual_grounding": [
+    {
+      "sentence_index": 0,
+      "bbox": [120, 80, 380, 290],
+      "image_id": "img-001"
+    }
+  ],
+  "generated_at": "2026-07-15T11:00:00Z",
+  "review_deadline": "2026-07-15T23:59:59Z"
+}
+```
+
+#### PATCH /reports/{report_id}
+تعديل تقرير (من قبل طبيب).
+
+```http
+PATCH /api/v1/reports/report-001 HTTP/1.1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "content": {
+    "findings": "The brain demonstrates normal parenchymal attenuation. No acute hemorrhage. Small low-density area in the right frontal lobe, likely old infarct."
+  },
+  "edit_reason": "added incidental finding"
+}
+```
+
+#### POST /reports/{report_id}/approve
+اعتماد تقرير.
+
+```http
+POST /api/v1/reports/report-001/approve HTTP/1.1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "comment": "Approved with minor edits"
+}
+```
+
+#### POST /reports/{report_id}/reject
+رفض تقرير.
+
+```http
+POST /api/v1/reports/report-001/reject HTTP/1.1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "reason": "findings_inaccurate",
+  "comment": "Model missed a fracture"
+}
+```
+
+#### GET /reports/{report_id}/export
+تصدير بصيغة مختلفة.
+
+```http
+GET /api/v1/reports/report-001/export?format=dicom_sr HTTP/1.1
+Authorization: Bearer <token>
+Accept: application/dicom
+```
+
+**Supported formats**:
+- `json` — JSON structure
+- `pdf` — PDF report
+- `dicom_sr` — DICOM Structured Report
+- `fhir` — FHIR DiagnosticReport
+- `txt` — Plain text
+
+---
+
+### 2.5 المراجعة (Review Queue)
+
+#### GET /review/queue
+قائمة التقارير بانتظار المراجعة.
+
+```http
+GET /api/v1/review/queue?status=pending&modality=CT&page=1 HTTP/1.1
+Authorization: Bearer <token>
+```
+
+#### POST /review/{report_id}/claim
+حجز تقرير للمراجعة (منع التضارب).
+
+```http
+POST /api/v1/review/report-001/claim HTTP/1.1
+Authorization: Bearer <token>
+```
+
+#### POST /review/{report_id}/release
+إلغاء الحجز.
+
+---
+
+### 2.6 النماذج (Models)
+
+#### GET /models
+النماذج المتاحة.
+
+```http
+GET /api/v1/models HTTP/1.1
+Authorization: Bearer <token>
+```
+
+**Response 200**:
+```json
+{
+  "data": [
+    {
+      "name": "r2gen",
+      "version": "v1.2",
+      "modality": "CR",
+      "body_parts": ["chest"],
+      "languages": ["en", "ar"],
+      "avg_inference_time_ms": 3200,
+      "active": true
+    },
+    {
+      "name": "radfm",
+      "version": "v0.9",
+      "modality": "CT",
+      "body_parts": ["brain", "chest", "abdomen"],
+      "languages": ["en"],
+      "avg_inference_time_ms": 8500,
+      "active": false
+    }
+  ]
+}
+```
+
+---
+
+### 2.7 الـ Audit Log
+
+#### GET /audit
+سجل الأحداث (للـ admins فقط).
+
+```http
+GET /api/v1/audit?user_id=550e8400&action=read&date_from=2026-07-01 HTTP/1.1
+Authorization: Bearer <admin_token>
+```
+
+---
+
+### 2.8 الإحصائيات (Statistics)
+
+#### GET /stats/overview
+```json
+{
+  "studies_total": 1542,
+  "studies_this_month": 87,
+  "reports_generated": 1203,
+  "reports_approved": 987,
+  "reports_rejected": 89,
+  "pending_review": 127,
+  "avg_review_time_minutes": 4.2,
+  "model_acceptance_rate": 0.82
+}
+```
+
+---
+
+## 3. الـ Webhooks
+
+### الأحداث المتاحة
+
+| Event | Trigger | Payload |
+|-------|---------|---------|
+| `study.ingested` | دراسة جديدة جاهزة | `{study_id, modality, image_count}` |
+| `report.generated` | تقرير مُولّد | `{report_id, study_id, model}` |
+| `report.approved` | تقرير مُعتمد | `{report_id, study_id, reviewer_id}` |
+| `report.rejected` | تقرير مرفوض | `{report_id, study_id, reason}` |
+| `study.archived` | دراسة أُرشفت | `{study_id, archived_at}` |
+
+### التسجيل
+```http
+POST /api/v1/webhooks HTTP/1.1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "url": "https://hospital.example.com/webhooks/radiology",
+  "events": ["report.approved", "report.rejected"],
+  "secret": "webhook_secret_for_signing"
+}
+```
+
+### التوقيع
+يُرسل header `X-Signature-256` مع HMAC-SHA256 للـ payload باستخدام الـ secret.
+
+---
+
+## 4. الـ Rate Limiting
+
+| الـ endpoint | الحد |
+|------------|-----|
+| `POST /auth/login` | 5 requests/minute |
+| `POST /studies` (upload) | 10 requests/hour |
+| `POST /reports/generate` | 20 requests/hour |
+| `GET /*` | 1000 requests/hour |
+
+عند تجاوز الحد:
+```json
+HTTP/1.1 429 Too Many Requests
+Retry-After: 60
+
+{
+  "error": "rate_limit_exceeded",
+  "message": "Too many requests. Retry after 60 seconds.",
+  "retry_after_seconds": 60
+}
+```
+
+---
+
+## 5. الـ Error Handling
+
+كل الأخطاء بصيغة [RFC 7807](https://datatracker.ietf.org/doc/html/rfc7807):
+
+```json
+HTTP/1.1 404 Not Found
+Content-Type: application/problem+json
+
+{
+  "type": "https://radiology-ai.example.com/errors/not-found",
+  "title": "Resource not found",
+  "status": 404,
+  "detail": "Study with ID abc123 not found",
+  "instance": "/api/v1/studies/abc123",
+  "trace_id": "req_550e8400"
+}
+```
+
+### رموز الأخطاء الشائعة
+
+| Status | Code | السبب |
+|--------|------|------|
+| 400 | `bad_request` | بيانات غير صالحة |
+| 401 | `unauthorized` | token مفقود أو منتهي |
+| 403 | `forbidden` | صلاحيات غير كافية |
+| 404 | `not_found` | مورد غير موجود |
+| 409 | `conflict` | تعارض (مثلاً: study_id مكرر) |
+| 413 | `payload_too_large` | ملف > 500MB |
+| 415 | `unsupported_media_type` | نوع ملف غير مدعوم |
+| 422 | `unprocessable_entity` | DICOM تالف |
+| 429 | `rate_limit_exceeded` | تجاوز rate limit |
+| 500 | `internal_error` | خطأ في الخادم |
+| 503 | `service_unavailable` | صيانة أو عطل |
+
+---
+
+## 6. الـ Pagination
+
+كل الـ endpoints التي تُرجع قوائم تستخدم cursor-based pagination:
+
+```http
+GET /api/v1/studies?page=2&per_page=20 HTTP/1.1
+```
+
+```json
+{
+  "data": [...],
+  "pagination": {
+    "page": 2,
+    "per_page": 20,
+    "total": 145,
+    "total_pages": 8,
+    "has_next": true,
+    "has_prev": true
+  }
+}
+```
+
+---
+
+## 7. الـ Versioning
+
+- **URL versioning**: `/api/v1/`, `/api/v2/`
+- **Backward compatibility**: 12 شهراً على الأقل
+- **Deprecation notice**: header `Sunset` + email للأطباء
+- **Changelog**: في `/api/v1/changelog`
+
+---
+
+## 8. الـ SDK (مستقبلاً)
+
+### Python
+```python
+from radiology_ai import RadiologyAIClient
+
+client = RadiologyAIClient(api_key="...")
+study = client.studies.upload("patient.dcm")
+report = client.reports.generate(study.id, language="ar")
+print(report.content_ar)
+```
+
+### JavaScript
+```javascript
+import { RadiologyAIClient } from '@radiology-ai/sdk';
+
+const client = new RadiologyAIClient({ apiKey: '...' });
+const study = await client.studies.upload(file);
+const report = await client.reports.generate(study.id, { language: 'ar' });
+console.log(report.content_ar);
+```
+
+---
+
+## 9. الـ OpenAPI Schema
+
+الـ schema الكامل متاح في:
+- **Production**: `https://api.radiology-ai.example.com/openapi.json`
+- **Docs (Swagger)**: `https://api.radiology-ai.example.com/docs`
+- **ReDoc**: `https://api.radiology-ai.example.com/redoc`
+
+---
+
+> آخر تحديث: 2026-08-01
+
+```
+
+---
+
+### `docs/ROADMAP.md`
+**اللغة:** Markdown | **الأسطر:** 262 | **الحجم:** 9,040 حرف
+
+```markdown
+# Roadmap — Radiology AI Platform
+
+> خطة التنفيذ المرحلية من Q4 2026 إلى Q4 2027
+
+---
+
+## النظرة العامة
+
+الخطة مقسّمة إلى 4 مراحل. كل مرحلة لها **مخرجات قابلة للقياس (Deliverables)** و**معايير قبول (Acceptance Criteria)**. عدم تحقيق معايير القبول يعني عدم الانتقال للمرحلة التالية.
+
+```
+Phase 1 (Q4 2026)        Phase 2 (Q1 2027)        Phase 3 (Q2 2027)        Phase 4 (Q3-Q4 2027)
+┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐
+│  Infrastructure │ ───► │   Prototype     │ ───► │   Pilot         │ ───► │   Production    │
+│                 │      │                 │      │                 │      │                 │
+│  • DICOM ingest │      │  • R2Gen model  │      │  • RadFM model  │      │  • Arabic LLM   │
+│  • De-id pipeline│     │  • HITL UI      │      │  • CT/MRI support│     │  • Federated    │
+│  • Storage      │      │  • 1000 reports │      │  • Pilot study  │      │  • FHIR export  │
+│                 │      │                 │      │                 │      │  • Cert. prep   │
+└─────────────────┘      └─────────────────┘      └─────────────────┘      └─────────────────┘
+       2 months                2 months                3 months                4-6 months
+```
+
+---
+
+## المرحلة 1: البنية التحتية (Q4 2026 — شهران)
+
+### الهدف
+بناء الأساس التقني: تخزين DICOM، إخفاء الهوية، واجهة عرض، وقاعدة بيانات.
+
+### المهام
+
+#### 1.1 إخفاء الهوية (De-identification) — أسبوعان
+- [ ] مراجعة وتطوير `scripts/dicom_deidentify.py` ليتوافق كاملاً مع PS3.15 Annex E
+- [ ] إضافة فحص الـ burned-in text (OCR على الصور لكشف الأسماء المحفورة)
+- [ ] اختبار على 100 ملف DICOM حقيقي (مع موافقة أخلاقية)
+- [ ] توثق الـ audit log لكل عملية
+- [ ] **معيار القبول**: 0% بيانات شخصية متبقية (يُفحص بـ tool تحقق خارجي)
+
+#### 1.2 DICOM Storage + Viewer — 3 أسابيع
+- [ ] نشر Orthanc PACS في Docker
+- [ ] إضافة PostgreSQL backend
+- [ ] دعم C-STORE, C-FIND, WADO-RS
+- [ ] دمج Cornerstone.js في واجهة الويب
+- [ ] دعم multi-frame و series متعددة
+- [ ] **معيار القبول**: يمكن رفع دراسة CT كاملة (500 slice) وعرضها في <3 ثوان
+
+#### 1.3 قاعدة البيانات — أسبوعان
+- [ ] تنفيذ schema الموضّح في ARCHITECTURE.md
+- [ ] Migrations عبر Alembic
+- [ ] Backup + restore آلي
+- [ ] **معيار القبول**: جميع الـ queries الرئيسية <100ms
+
+#### 1.4 API الأساسي — أسبوعان
+- [ ] FastAPI skeleton مع OAuth2
+- [ ] endpoints: `/auth`, `/studies`, `/images`, `/reports`
+- [ ] RBAC (Admin, Radiologist, Technician)
+- [ ] Rate limiting + audit logging
+- [ ] **معيار القبول**: 99% uptime في الأسبوع الأخير من الاختبار
+
+### مخرجات المرحلة 1
+- ✅ بيئة Docker كاملة تعمل محلياً
+- ✅ يمكن رفع DICOM وإخفاء هويته وتخزينه
+- ✅ واجهة ويب لعرض الصور
+- ✅ API موثّق (OpenAPI/Swagger)
+- ✅ 80%+ test coverage للكود الأساسي
+
+---
+
+## المرحلة 2: النموذج الأولي (Q1 2027 — شهران)
+
+### الهدف
+تدريب أول نموذج يولّد تقارير، ولو بدقة متوسطة، على بيانات حقيقية.
+
+### المهام
+
+#### 2.1 جمع البيانات — 3 أسابيع
+- [ ] جمع 1000+ زوج (صورة، تقرير) من المستشفى الشريك
+- [ ] موافقة أخلاقية (IRB approval)
+- [ ] De-identification لكل الملفات
+- [ ] تقسيم: 70% train, 15% val, 15% test
+- [ ] **معيار القبول**: تنوع كافٍ (3+ modalities، 5+ body parts)
+
+#### 2.2 تدريب R2Gen — 3 أسابيع
+- [ ] إعداد GPU instance (AWS p4d أو GCP A2)
+- [ ] Fine-tune R2Gen على البيانات
+- [ ] Hyperparameter tuning (lr, batch size, epochs)
+- [ ] Evaluation: BLEU-4, CIDEr, ROUGE-L
+- [ ] **معيار القبول**: BLEU-4 > 0.15 على test set (مقارنة بـ 0.10 baseline)
+
+#### 2.3 واجهة HITL — 3 أسابيع
+- [ ] Diff viewer (النص المُولّد vs التعديل اليدوي)
+- [ ] Confidence heatmap (الجمل ذات الثقة المنخفضة بالأحمر)
+- [ ] Visual grounding (تظليل المناطق في الصورة)
+- [ ] Approval/rejection workflow
+- [ ] **معيار القبول**: طبيب إشعاعي يراجع 10 تقارير/ساعة دون إرهاق
+
+#### 2.4 Inference Service — أسبوعان
+- [ ] تحميل النموذج في الذاكرة (model serving)
+- [ ] Batch inference (للتقييم)
+- [ ] Real-time inference (للاستخدام)
+- [ ] Confidence scoring لكل جملة
+- [ ] **معيار القبول**: زمن التوليد <5 ثوان لكل دراسة
+
+### مخرجات المرحلة 2
+- ✅ نموذج R2Gen مُدرّب على بيانات حقيقية
+- ✅ واجهة HITL كاملة
+- ✅ pipeline من الصورة إلى التقرير المُراجَع
+- ✅ تقرير تقييم شامل (BLEU, CIDEr, Clinical Accuracy)
+
+---
+
+## المرحلة 3: الـ Pilot (Q2 2027 — 3 أشهر)
+
+### الهدف
+تجربة المنصة في بيئة سريرية حقيقية مع 1-2 مستشفى شريك، وجمع feedback.
+
+### المهام
+
+#### 3.1 ترقية إلى RadFM — 4 أسابيع
+- [ ] استبدال R2Gen بـ RadFM (يدعم CT/MRI وليس فقط X-ray)
+- [ ] إعادة تدريب على بيانات أوسع
+- [ ] دعم 3D volumes (وليس فقط 2D slices)
+- [ ] **معيار القبول**: أداء أفضل من R2Gen بـ 20%+ على كل المقاييس
+
+#### 3.2 Pilot Deployment — 4 أسابيع
+- [ ] نشر On-Premise في المستشفى الشريك
+- [ ] تدريب 3-5 أطباء إشعاعيين
+- [ ] تشغيل لمدة 4 أسابيع على بيانات حقيقية
+- [ ] جمع: تقارير مُولّدة، تعديلات، رفض، feedback نوعي
+- [ ] **معيار القبول**: 50+ تقرير مُراجَع من كل طبيب
+
+#### 3.3 تحسينات بناءً على الـ Pilot — 4 أسابيع
+- [ ] تحليل أنماط الأخطاء (error analysis)
+- [ ] إعادة تدريب النموذج على الـ rejected reports
+- [ ] تحسين الـ UI بناءً على feedback
+- [ ] إضافة ميزات مطلوبة (مثلاً: templates للتقارير الشائعة)
+- [ ] **معيار القبول**: رضا الأطباء >4/5 في استبيان نهائي
+
+### مخرجات المرحلة 3
+- ✅ RadFM يعمل على CT/MRI/X-ray
+- ✅ تقرير Pilot شامل (إيجابيات، سلبيات، توصيات)
+- ✅ نموذج محسّن بناءً على بيانات حقيقية
+- ✅ قائمة ميزات للإنتاج
+
+---
+
+## المرحلة 4: الإنتاج (Q3-Q4 2027 — 4-6 أشهر)
+
+### الهدف
+إطلاق رسمي مع نماذج عربية، Federated Learning، وامتثال تنظيمي كامل.
+
+### المهام
+
+#### 4.1 نموذج عربي Fine-tuned — 6 أسابيع
+- [ ] ترجمة 10,000+ تقرير إنجليزي إلى عربي (بواسطة أطباء)
+- [ ] Fine-tune نموذج LLM عربي (Jais, AceGPT) على التقارير
+- [ ] Vision-Language alignment بالعربية
+- [ ] **معيار القبول**: جودة عربية >8/10 من أطباء عرب
+
+#### 4.2 Federated Learning — 6 أسابيع
+- [ ] إعداد Flower (مكتبة FL مفتوحة المصدر)
+- [ ] تدريب موزّع على 3+ مستشفيات دون نقل البيانات
+- [ ] Differential Privacy (ε < 1.0)
+- [ ] **معيار القبول**: دقة النموذج المشترك ≥ دقة النموذج المركزي
+
+#### 4.3 FHIR Export — 4 أسابيع
+- [ ] تحويل التقارير المُعتمدة إلى DiagnosticReport FHIR R4
+- [ ] دعم SNOMED CT codes (النتائج، التشخيصات)
+- [ ] دعم LOINC codes (النوع الإشعاعي)
+- [ ] **معيار القبول**: validation ناجح على FHIR Validator الرسمي
+
+#### 4.4 الامتثال التنظيمي — 8 أسابيع
+- [ ] HIPAA Security Rule assessment
+- [ ] GDPR Data Protection Impact Assessment (DPIA)
+- [ ] PDPL (Saudi) compliance check
+- [ ] ISO 27001 readiness (إن كان مطلوباً)
+- [ ] **معيار القبول**: تقرير امتثال من جهة خارجية (third-party audit)
+
+#### 4.5 الإطلاق — 4 أسابيع
+- [ ] Documentation كاملة
+- [ ] Training materials للأطباء
+- [ ] Support process (tickets, SLA)
+- [ ] Monitoring dashboards
+- [ ] **معيار القبول**: 10+ مستشفى في queue للانضمام
+
+### مخرجات المرحلة 4
+- ✅ منصة إنتاجية كاملة بالعربية
+- ✅ Federated Learning يعمل
+- ✅ FHIR export
+- ✅ امتثال HIPAA/GDPR/PDPL
+- ✅ إطلاق رسمي
+
+---
+
+## المخاطر والتخفيف (Risk Register)
+
+| الخطر | الاحتمال | التأثير | التخفيف |
+|------|--------|--------|--------|
+| عدم توفر بيانات كافية | متوسط | 🔴 عالي | تعاون مع 2+ مستشفيات + استخدام public datasets |
+| أداء النموذج ضعيف بالعربية | متوسط | 🟡 متوسط | بدء التدريب العربي مبكراً في Phase 2 |
+| رفض الأطباء للنظام | منخفض | 🔴 عالي | Pilot مكثف + تحسينات بناءً على feedback |
+| مشاكل تنظيمية (IRB) | متوسط | 🟡 متوسط | بدء عملية IRB مبكراً (3-6 أشهر) |
+| تكلفة GPU عالية | متوسط | 🟡 متوسط | استخدام spot instances + Federated Learning |
+| تسريب بيانات | منخفض | 🔴 عالي | De-identification صارم + audit logs + encryption |
+
+---
+
+## KPIs (Key Performance Indicators)
+
+### KPIs تقنية
+- `inference_latency_p95 < 5 seconds`
+- `system_uptime > 99.5%`
+- `test_coverage > 80%`
+- `bug_rate < 1 critical bug/month`
+
+### KPIs سريرية
+- `clinical_acceptance_rate > 70%` (نسبة التقارير المُعتمدة دون تعديل جوهري)
+- `radiologist_time_saved > 30%` (مقارنة بالكتابة اليدوية)
+- `critical_finding_recall > 95%` (نسبة النتائج الحرجة التي يلتقطها النموذج)
+
+### KPIs أمنية
+- `phi_leak_incidents = 0`
+- `audit_log_completeness = 100%`
+- `time_to_detect_breach < 1 hour`
+
+---
+
+## الاعتماديات (Dependencies)
+
+### داخلي
+- [`omni-medical-suite`](https://github.com/DrAbdulmalek/omni-medical-suite) — لاستخدام pipeline الـ OCR لاستخراج النص من الـ burned-in annotations
+- [`dictionaries-csv`](https://github.com/DrAbdulmalek/dictionaries-csv) — للتحقق من المصطلحات الطبية العربية في التقارير المُولّدة
+- [`intelli-file-manager`](https://github.com/DrAbdulmalek/intelli-file-manager) — لإدارة ملفات DICOM (UI موحّد)
+
+### خارجي
+- GPU instances (AWS/GCP)
+- IRB approval
+- Data sharing agreements مع المستشفيات
+- FHIR validator service
+
+---
+
+## الميزانية التقديرية (Rough Order of Magnitude)
+
+> هذه أرقام تقديرية للـ cloud infrastructure فقط (لا تشمل رواتب الفريق)
+
+| البند | شهرياً | سنوياً |
+|------|--------|--------|
+| GPU (p4d.24xlarge × 2 للتدريب) | $8,000 | $96,000 |
+| Storage (10TB DICOM + 1TB DB) | $300 | $3,600 |
+| Compute (API + workers) | $500 | $6,000 |
+| Monitoring + Logging | $200 | $2,400 |
+| Backup + DR | $400 | $4,800 |
+| **الإجمالي التقريبي** | **$9,400** | **$112,800** |
+
+> 💡 يمكن تخفيض التكلفة 60%+ باستخدام spot instances للـ training و reserved instances للـ production.
+
+---
+
+> آخر تحديث: 2026-08-01
+
+```
+
+---
+
+### `docs/ARCHITECTURE.md`
+**اللغة:** Markdown | **الأسطر:** 339 | **الحجم:** 11,723 حرف
+
+```markdown
+# Architecture — Radiology AI Platform
+
+> البنية التقنية الكاملة لمنصة توليد التقارير الإشعاعية بالذكاء الاصطناعي
+
+---
+
+## 1. النظرة العامة
+
+المنصة تعمل بنمط **Microservices** مع ربط غير متزامن (Async Message Bus). كل خدمة مسؤولة عن مهمة واحدة، والاتصال بينها عبر REST + Message Queue. هذا يسمح بقياس كل خدمة على حدة وفق الحمل.
+
+### المبادئ التصميمية
+
+1. **Privacy by Design** — إخفاء الهوية يحدث قبل أي تخزين دائم
+2. **Audit Everything** — كل عملية (قراءة، كتابة، توليد، تعديل) موثّقة في audit log غير قابل للحذف
+3. **HITL Mandatory** — لا تقرير يخرج بدون مراجعة بشرية
+4. **Federated First** — يمكن تدريب النماذج على بيانات موزّعة دون نقلها
+5. **Cloud-Agnostic** — يعمل على AWS / GCP / Azure / On-Premise بنفس الكود
+
+---
+
+## 2. المخطط العام (High-Level Diagram)
+
+```
+                          ┌──────────────────────┐
+                          │   Web Frontend       │
+                          │   (React + Cornerstone)│
+                          └──────────┬───────────┘
+                                     │ HTTPS
+                                     ▼
+                          ┌──────────────────────┐
+                          │   API Gateway        │
+                          │   (FastAPI + OAuth2) │
+                          └──────────┬───────────┘
+                                     │
+                ┌────────────────────┼────────────────────┐
+                │                    │                    │
+                ▼                    ▼                    ▼
+      ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+      │ Ingestion Svc   │  │ Inference Svc   │  │ Review Svc      │
+      │ - DICOM parser  │  │ - Model loading │  │ - HITL queue    │
+      │ - Validation    │  │ - Report gen    │  │ - Diff viewer   │
+      │ - De-id pipeline│  │ - Confidence    │  │ - Approval flow │
+      └────────┬────────┘  └────────┬────────┘  └────────┬────────┘
+               │                    │                    │
+               └────────────────────┼────────────────────┘
+                                    │
+                                    ▼
+                          ┌──────────────────────┐
+                          │   Message Bus        │
+                          │   (Redis + Celery)   │
+                          └──────────┬───────────┘
+                                     │
+                ┌────────────────────┼────────────────────┐
+                ▼                    ▼                    ▼
+      ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+      │ Orthanc PACS    │  │ Object Storage  │  │ Vector DB       │
+      │ (DICOM store)   │  │ (MinIO/S3)      │  │ (Milvus)        │
+      └─────────────────┘  └─────────────────┘  └─────────────────┘
+                │                    │                    │
+                └────────────────────┼────────────────────┘
+                                     │
+                                     ▼
+                          ┌──────────────────────┐
+                          │   PostgreSQL         │
+                          │   (Metadata + Audit) │
+                          └──────────────────────┘
+```
+
+---
+
+## 3. المكونات التفصيلية
+
+### 3.1 Ingestion Service
+
+المسؤول عن استقبال ملفات DICOM الخام، التحقق منها، وإخفاء هويتها.
+
+**التدفقات:**
+- DICOM Web Upload (STOW-RS)
+- C-STORE (DICOM Network Protocol)
+- Filesystem Watcher (للمجلدات المشتركة)
+
+**خطوات المعالجة:**
+1. استقبال الملف + فحص الـ DICOM header للتحقق من السلامة
+2. استخراج الـ metadata (Modality, StudyInstanceUID, SeriesDescription)
+3. تشغيل De-identification Pipeline (انظر `scripts/dicom_deidentify.py`)
+4. تخزين الصورة في Orthanc + رفع الـ metadata إلى PostgreSQL
+5. نشر رسالة في Redis: `image.ingested` للخدمات الأخرى
+
+**الـ endpoints:**
+- `POST /api/v1/ingest/dicom` — رفع ملف DICOM واحد
+- `POST /api/v1/ingest/study` — رفع دراسة كاملة (ZIP)
+- `GET /api/v1/ingest/{id}/status` — حالة المعالجة
+
+### 3.2 Inference Service
+
+المسؤول عن توليد التقارير من الصور باستخدام نماذج Vision-Language.
+
+**النماذج المدعومة (مرحلياً):**
+- **Phase 1**: R2Gen (بسيط، سريع، جيد للـ X-ray)
+- **Phase 2**: RadFM (أقوى، يدعم CT/MRI)
+- **Phase 3**: نموذج عربي مُخصّص (Fine-tuned)
+
+**خطوات المعالجة:**
+1. استقبال `study_id` من قائمة الانتظار
+2. تحميل الصور من Orthanc (C-GET أو WADO-RS)
+3. Preprocessing: Resampling, Normalization, Windowing (انظر `DATA_GUIDE.md`)
+4. تشغيل النموذج + حساب Confidence Score لكل جملة
+5. تخزين التقرير المُولّد + الـ confidence map في PostgreSQL
+6. نشر `report.generated` للمراجعة
+
+**الـ endpoints:**
+- `POST /api/v1/inference/{study_id}/generate` — توليد تقرير
+- `GET /api/v1/inference/{report_id}/confidence` — درجات الثقة
+- `GET /api/v1/inference/models` — النماذج المتاحة
+
+### 3.3 Review Service (HITL)
+
+المسؤول عن مراجعة التقارير المُولّدة من قبل أطباء إشعاعيين.
+
+**الميزات:**
+- Diff Viewer: مقارنة بين التقرير المُولّد والتعديلات اليدوية
+- Visual Grounding: تظليل المناطق في الصورة المذكورة في كل جملة
+- Confidence Heatmap: الجمل ذات الثقة المنخفضة مظللة بالأحمر
+- Audit Trail: كل تعديل موثّق بـ timestamp + user ID + reason
+
+**الـ endpoints:**
+- `GET /api/v1/review/queue` — قائمة الانتظار
+- `POST /api/v1/review/{report_id}/approve` — اعتماد
+- `POST /api/v1/review/{report_id}/edit` — تعديل
+- `POST /api/v1/review/{report_id}/reject` — رفض مع سبب
+
+### 3.4 Training Pipeline (Offline)
+
+لا يعمل كخدمة بل كـ batch job عبر Celery + Kubernetes Jobs.
+
+**المراحل:**
+1. Data Selection: اختيار أزواج (صورة، تقرير معتمد) من قاعدة البيانات
+2. Augmentation: تطبيق transforms من MONAI/TorchIO
+3. Pretraining: Masked Image Modeling على الصور غير المُعنونة
+4. Supervised Fine-tuning: Cross-entropy على أزواج (صورة، تقرير)
+5. RLHF: PPO مع rewards من طبيب إشعاعي
+6. Evaluation: على test set + مقاييس سريرية (CheXbert, BERTScore)
+
+---
+
+## 4. قاعدة البيانات (PostgreSQL Schema)
+
+```sql
+-- Studies (دراسة = مجموعة صور لمريض في جلسة واحدة)
+CREATE TABLE studies (
+    id UUID PRIMARY KEY,
+    patient_pseudo_id VARCHAR(64) NOT NULL,  -- hashed
+    study_instance_uid_hash VARCHAR(64) UNIQUE NOT NULL,
+    study_date DATE,  -- date-shifted
+    modality VARCHAR(16) NOT NULL,  -- CT, MR, XR, US
+    body_part VARCHAR(64),
+    accession_number VARCHAR(64),
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Images (صورة واحدة داخل دراسة)
+CREATE TABLE images (
+    id UUID PRIMARY KEY,
+    study_id UUID REFERENCES studies(id),
+    sop_instance_uid_hash VARCHAR(64) UNIQUE NOT NULL,
+    series_number INTEGER,
+    instance_number INTEGER,
+    rows INTEGER,
+    columns INTEGER,
+    pixel_spacing FLOAT[],
+    slice_thickness FLOAT,
+    window_center FLOAT,
+    window_width FLOAT,
+    orthanc_id VARCHAR(64) NOT NULL,  -- reference to Orthanc
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Reports (تقارير)
+CREATE TABLE reports (
+    id UUID PRIMARY KEY,
+    study_id UUID REFERENCES studies(id),
+    report_type VARCHAR(32) NOT NULL,  -- generated, reviewed, final
+    content TEXT NOT NULL,
+    content_ar TEXT,  -- الترجمة العربية
+    model_name VARCHAR(64),
+    model_version VARCHAR(32),
+    confidence_scores JSONB,  -- per-sentence confidence
+    generated_at TIMESTAMPTZ,
+    reviewed_at TIMESTAMPTZ,
+    reviewer_id UUID,
+    status VARCHAR(16) DEFAULT 'draft',  -- draft, pending, approved, rejected
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Audit Log (غير قابل للحذف)
+CREATE TABLE audit_log (
+    id BIGSERIAL PRIMARY KEY,
+    user_id UUID,
+    action VARCHAR(32) NOT NULL,  -- create, read, update, delete, generate, approve
+    resource_type VARCHAR(32),
+    resource_id UUID,
+    details JSONB,
+    ip_address INET,
+    user_agent TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- إنشاء index للأداء
+CREATE INDEX idx_images_study_id ON images(study_id);
+CREATE INDEX idx_reports_study_id ON reports(study_id);
+CREATE INDEX idx_reports_status ON reports(status);
+CREATE INDEX idx_audit_user_resource ON audit_log(user_id, resource_type, resource_id);
+```
+
+---
+
+## 5. الأمان
+
+### 5.1 طبقات الحماية
+
+```
+┌─ WAF (Web Application Firewall) — CloudFlare/AWS WAF
+│  └─ Rate limiting, DDoS protection
+├─ TLS 1.3 — جميع الاتصالات مشفّرة
+│  └─ HSTS, Certificate Pinning
+├─ OAuth2 + JWT — مصادقة قوية
+│  └─ Refresh tokens, MFA for admins
+├─ RBAC — صلاحيات دقيقة
+│  └─ Admin, Radiologist, Technician, Viewer
+├─ Audit Logging — غير قابل للحذف
+│  └─ WORM storage, tamper-evident
+└─ Encryption at Rest
+   └─ PostgreSQL: AES-256, MinIO: SSE-KMS
+```
+
+### 5.2 إخفاء الهوية (De-identification)
+
+يتبع المعيار **DICOM PS3.15 Annex E** (Basic Application Level Confidentiality Profile):
+
+- **Tags تُحذف**: PatientName, PatientAddress, TelephoneNumbers, ReferringPhysicianName
+- **Tags تُهاش**: PatientID, StudyInstanceUID, SeriesInstanceUID, SOPInstanceUID
+- **Tags تُزاح تواريخها**: StudyDate, SeriesDate, PatientBirthDate (shift بـ N يوم عشوائي)
+- **Tags تُفحص للـ burned-in text**: صور قد تحتوي على اسم المريض محفور فيها
+
+التنفيذ: `scripts/dicom_deidentify.py`
+
+للتفاصيل الكاملة: [SECURITY.md](SECURITY.md)
+
+---
+
+## 6. البنية التحتية (Infrastructure)
+
+### 6.1 Docker Compose (Development)
+
+الملف: `setup/docker-compose.yml`
+
+الخدمات:
+- **orthanc**: PACS server لتخزين DICOM
+- **postgres**: قاعدة البيانات الرئيسية
+- **minio**: Object storage للصور الكبيرة
+- **milvus**: Vector DB للبحث الدلالي في التقارير
+- **redis**: Message broker + cache
+- **api**: FastAPI service
+- **worker**: Celery worker للمهام غير المتزامنة
+- **flower**: مراقبة Celery
+
+### 6.2 Kubernetes (Production)
+
+للإنتاج، يُنصح بـ:
+- **GPU nodes**: لخدمة Inference (NVIDIA T4 أو A10)
+- **CPU nodes**: لباقي الخدمات
+- **Persistent Volumes**: للبيانات (ceph, EBS, Azure Disk)
+- **Ingress**: NGINX Ingress + cert-manager
+- **Monitoring**: Prometheus + Grafana + Loki
+
+---
+
+## 7. التوسع (Scaling)
+
+| الخدمة | استراتيجية التوسع |
+|--------|------------------|
+| API Gateway | Horizontal — كل instance عديم الحالة |
+| Ingestion | Horizontal — كل ملف مستقل |
+| Inference | Horizontal + GPU — قائمة انتظار لكل GPU |
+| Review | Horizontal — مع قفل متفائل (optimistic locking) |
+| Training | Vertical — حسب حجم الـ GPU المتاح |
+| Orthanc | Vertical + Read Replicas — نمط CQRS |
+
+---
+
+## 8. المراقبة (Observability)
+
+- **Metrics**: Prometheus (latency, throughput, error rates, GPU utilization)
+- **Logs**: structured JSON إلى Loki/ELK
+- **Tracing**: OpenTelemetry + Jaeger
+- **Alerts**: AlertManager → PagerDuty/Slack
+
+الـ metrics الحرجة:
+- `ingestion_latency_seconds` — زمن استقبال ومعالجة DICOM
+- `inference_latency_seconds` — زمن توليد التقرير
+- `review_backlog_count` — عدد التقارير بانتظار المراجعة
+- `model_confidence_distribution` — توزيع درجات الثقة
+- `audit_log_events_total` — عدد أحداث الـ audit
+
+---
+
+## 9. الـ Disaster Recovery
+
+| المكون | RPO | RTO | الاستراتيجية |
+|--------|-----|-----|--------------|
+| PostgreSQL | 5 min | 30 min | Streaming replication + daily snapshots |
+| Orthanc | 1 hr | 2 hr | Nightly backup to S3 |
+| MinIO | 1 hr | 1 hr | Cross-region replication |
+| Models | 24 hr | 4 hr | Versioned in model registry |
+
+---
+
+## 10. القرارات المعمارية المفتوحة (ADRs)
+
+القرارات المُعتمدة موثّقة في [ADR.md](ADR.md). القرارات المعلّقة قيد المناقشة:
+
+### ✅ مقررة (انظر [ADR.md](ADR.md))
+- ADR-001: قاعدة البيانات → **asyncpg** (Async PostgreSQL via SQLAlchemy 2.0)
+- ADR-002: Job Queue → **Celery + Redis + Flower** (مع retry logic + monitoring)
+- ADR-003: Migrations → **Alembic + SQLAlchemy 2.0** (لا SQLModel)
+- ADR-004: Auth → **JWT short-lived (15min) + Refresh tokens (7d, httpOnly cookie)**
+
+### ⏳ معلّقة
+- [ ] ADR-005: Orthanc vs dcm4che للـ PACS
+- [ ] ADR-006: Milvus vs Weaviate vs Qdrant للـ Vector DB
+- [ ] ADR-007: Flower vs NVFlare للـ Federated Learning
+- [ ] ADR-008: نموذج عربي Fine-tuned vs Translation pipeline
+- [ ] ADR-009: On-Premise vs Cloud vs Hybrid للنشر
+- [ ] ADR-010: FHIR R4 vs FHIR R5 للـ export
+
+---
+
+> آخر تحديث: 2026-08-01
+
+```
+
+---
