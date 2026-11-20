@@ -139,7 +139,7 @@ omegaconf==2.3.0
 # PDF Generation (for reports)
 # ─────────────────────────────────────
 reportlab==4.2.5
-weasyprint==63.0
+weasyprint==70.0
 
 # ─────────────────────────────────────
 # Testing & Quality
